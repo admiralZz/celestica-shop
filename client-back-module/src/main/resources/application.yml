@@ -1,0 +1,44 @@
+server:
+  port: 8083
+
+app:
+  image:
+    bucket:
+      products: /home/andrey/packages/online-shop/images/products
+  debug:
+    enable-global-context: true
+  cors:
+    allowed-origins:
+      - http://localhost:3001
+      - http://192.168.21.38:3001
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl.auto: none
+    open-in-view: false
+    show-sql: true
+  liquibase:
+    enabled: false
+
+logging:
+  level:
+    org.springframework: INFO
+    com.admiral.onlineshop: DEBUG
+    liquibase: INFO
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+jwt:
+  secret: vHk91JhfSOp2kFDrZmHmbdPXuLiS5KEYyyBHPOcm92rqot0M47pV7cGDJbZMEWg
+  expiration: 86400000  # 24 часа в миллисекундах
+cookie:
+  name: authToken
+  expiration: 86400000  # 24 часа в миллисекундах

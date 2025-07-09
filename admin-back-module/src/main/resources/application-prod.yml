@@ -1,0 +1,52 @@
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: None
+        secure: true
+  port: 8084
+
+app:
+  image:
+      products:
+        bucket: /home/andrey/packages/online-shop/images/products
+        prefix-file-name: "product_"
+  debug:
+    enable-global-context: true
+  cors:
+    allowed-origins:
+      - ${ALLOWED_ORIGIN}
+  init:
+    default-admin:
+      email: admin@example.com
+      password: simsimopen
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl.auto: none
+    open-in-view: false
+    show-sql: true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+logging:
+  level:
+    org.springframework: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    com.admiral.onlineshop: DEBUG
+    liquibase: INFO
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

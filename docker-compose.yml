@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.4
+    restart: always
+    environment:
+      POSTGRES_DB: online-shop-db
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - celestica-network
+
+  admin-backend:
+    build:
+      context: /home/andrey/packages/celestica-shop/admin-back-module
+      dockerfile: Dockerfile
+    image: 194.135.34.63:5000/admin-backend:latest
+    volumes:
+      - ./config/admin-backend/application-prod.yml:/app/config/application-prod.yml
+    depends_on:
+      - postgres
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/online-shop-db
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypass
+    ports:
+      - "8084:8084"
+    networks:
+      - celestica-network
+
+  client-backend:
+    build:
+      context: /home/andrey/packages/celestica-shop/client-back-module
+      dockerfile: Dockerfile
+    image: 194.135.34.63:5000/client-backend:latest
+    volumes:
+      - ./config/client-backend/application-prod.yml:/app/config/application-prod.yml
+    depends_on:
+      - admin-backend
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/online-shop-db
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypass
+      JWT_SECRET: wHk91JhfSOp2kFDrZmHmbdPXuLiS7KEYyyBHPOcm92rqot0M47pV7cGDJbZMEWq
+    ports:
+      - "8083:8083"
+    networks:
+      - celestica-network
+
+  nginx-frontend:
+    build:
+      context: /home/andrey/packages/celestica-shop
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL_CLIENT: http://celestica-shop.com:8083/api
+        REACT_APP_API_BASE_URL_ADMIN: http://celestica-shop.com:8084/api
+    image: 194.135.34.63:5000/nginx-frontend:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - admin-backend
+      - client-backend
+    networks:
+      - celestica-network
+
+volumes:
+  pgdata:
+
+networks:
+  celestica-network:

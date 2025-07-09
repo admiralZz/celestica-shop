@@ -1,0 +1,3 @@
+rootProject.name = 'celestica-shop'
+
+include 'admin-back-module', 'client-back-module'

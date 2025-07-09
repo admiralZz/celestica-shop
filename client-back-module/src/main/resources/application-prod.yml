@@ -1,0 +1,40 @@
+server:
+  port: 8083
+
+app:
+  image:
+    bucket:
+      products: /images/products
+  cors:
+    allowed-origins:
+      - ${ALLOWED_ORIGIN}
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl.auto: none
+    open-in-view: false
+    show-sql: true
+  liquibase:
+    enabled: false
+
+logging:
+  level:
+    org.springframework.web.cors: DEBUG
+    org.springframework: INFO
+    com.admiral.onlineshop: INFO
+    liquibase: INFO
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000  # 24 часа в миллисекундах
+cookie:
+  name: authToken
+  expiration: 86400000  # 24 часа в миллисекундах
+  secure: false # ставиться для HTTPS
