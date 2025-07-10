@@ -100,43 +100,45 @@ const ProductsPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
-      <h2 className="text-xl font-bold mb-4">Товары</h2>
-      <button
-        className="mb-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
-        onClick={handleAddClick}
-      >
-        Добавить продукт
-      </button>
-      <table className="min-w-full bg-white border rounded shadow">
-        <thead>
-          <tr>
-            <th className="px-4 py-2 border-b">ID</th>
-            <th className="px-4 py-2 border-b">Название</th>
-            <th className="px-4 py-2 border-b">Категория</th>
-            <th className="px-4 py-2 border-b">Цена</th>
-            <th className="px-4 py-2 border-b">В наличии</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(product => (
-            <tr
-              key={product.id}
-              className="hover:bg-blue-50 cursor-pointer focus:bg-blue-100 outline-none"
-              tabIndex={0}
-              aria-label={`Открыть товар ${product.name}`}
-              onClick={() => handleRowClick(product.id)}
-              onKeyDown={e => handleRowKeyDown(e, product.id)}
-            >
-              <td className="px-4 py-2 border-b">{product.id}</td>
-              <td className="px-4 py-2 border-b">{product.name}</td>
-              <td className="px-4 py-2 border-b">{product.categoryName}</td>
-              <td className="px-4 py-2 border-b">{product.price}</td>
-              <td className="px-4 py-2 border-b">{product.stockQuantity}</td>
+    <div className="w-full max-w-screen-2xl mx-auto flex bg-white rounded shadow min-h-[500px] px-4">
+      <section className="flex-1 p-8">
+        <h2 className="text-xl font-bold mb-4">Товары</h2>
+        <button
+          className="mb-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+          onClick={handleAddClick}
+        >
+          Добавить продукт
+        </button>
+        <table className="min-w-full bg-white border rounded shadow">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border-b">ID</th>
+              <th className="px-4 py-2 border-b">Название</th>
+              <th className="px-4 py-2 border-b">Категория</th>
+              <th className="px-4 py-2 border-b">Цена</th>
+              <th className="px-4 py-2 border-b">В наличии</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map(product => (
+              <tr
+                key={product.id}
+                className="hover:bg-blue-50 cursor-pointer focus:bg-blue-100 outline-none"
+                tabIndex={0}
+                aria-label={`Открыть товар ${product.name}`}
+                onClick={() => handleRowClick(product.id)}
+                onKeyDown={e => handleRowKeyDown(e, product.id)}
+              >
+                <td className="px-4 py-2 border-b">{product.id}</td>
+                <td className="px-4 py-2 border-b">{product.name}</td>
+                <td className="px-4 py-2 border-b">{product.categoryName}</td>
+                <td className="px-4 py-2 border-b">{product.price}</td>
+                <td className="px-4 py-2 border-b">{product.stockQuantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 };

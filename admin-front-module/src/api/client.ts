@@ -6,7 +6,7 @@ import {
     mapToOrderBody,
     mapToLoginResponse,
     mapToAuthResponse,
-    mapToOrderResponse
+    mapToOrderResponse, mapToUser
 } from './mapper';
 import {client} from "./config";
 
@@ -16,8 +16,14 @@ export const getItems = async (): Promise<DTO.Product[]> => {
     return response.data.map(mapToProduct);
 };
 
+// Получить пользователей
+export const getUsers = async (): Promise<DTO.User[]> => {
+    const response = await client.get<DTO.User[]>('/users', { withCredentials: true });
+    return response.data.map(mapToUser);
+};
+
 // Получить все заказы пользователя
-export const getMyOrders = async (): Promise<DTO.GetOrdersResponse> => {
+export const getOrders = async (): Promise<DTO.GetOrdersResponse> => {
     const response = await client.get<DTO.GetOrdersResponse>('/orders', { withCredentials: true });
     return mapToOrderResponse(response.data)
 };

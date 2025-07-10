@@ -44,3 +44,8 @@ export const mapToAuthResponse = (data: any): DTO.AuthResponse => ({
     id: Number(data.id),
     email: String(data.email)
 });
+
+export const mapToUser = (data: any): DTO.User => ({
+    id: Number(data.id),
+    email: String(data.email)
+});

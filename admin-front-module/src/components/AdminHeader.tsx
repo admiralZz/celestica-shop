@@ -40,6 +40,12 @@ const AdminHeader: React.FC = () => {
           Товары
         </Link>
         <Link
+          to="/orders"
+          className={`font-semibold text-lg px-2 py-1 rounded transition-colors ${location.pathname === '/orders' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-200'}`}
+        >
+          Заказы
+        </Link>
+        <Link
           to="/settings"
           className={`font-semibold text-lg px-2 py-1 rounded transition-colors ${location.pathname === '/settings' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-200'}`}
         >

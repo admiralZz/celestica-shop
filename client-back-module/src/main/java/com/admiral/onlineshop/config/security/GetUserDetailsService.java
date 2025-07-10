@@ -1,6 +1,8 @@
 package com.admiral.onlineshop.config.security;
 
+import com.admiral.onlineshop.exception.UserNotFoundException;
 import com.admiral.onlineshop.model.User;
+import com.admiral.onlineshop.model.UserRole;
 import com.admiral.onlineshop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +24,10 @@ public class GetUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+
+        if (user.getRole().equals(UserRole.ROLE_ADMIN)) {
+            throw new UserNotFoundException("User not found with email: " + email);
+        }
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),

@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -25,6 +27,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with username: " + email));
         return userMapper.toDTO(user);
+    }
+
+    @Override
+    public List<ReadUserDTO> getAllUsers() {
+        return userRepository.findAllByRole(UserRole.ROLE_USER).stream()
+                .map(userMapper::toDTO)
+                .toList();
     }
 
     @Override
