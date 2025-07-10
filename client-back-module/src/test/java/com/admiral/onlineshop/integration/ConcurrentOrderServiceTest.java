@@ -1,12 +1,12 @@
 package com.admiral.onlineshop.integration;
 
-import com.admiral.onlineshop.dto.*;
-import com.admiral.onlineshop.exception.ProductNotFoundException;
+import com.admiral.common.dto.order.CreateOrderDTO;
+import com.admiral.common.dto.order.CreateOrderItemDTO;
 import com.admiral.onlineshop.integration.util.TestHelper;
-import com.admiral.onlineshop.model.Order;
-import com.admiral.onlineshop.repository.OrderRepository;
-import com.admiral.onlineshop.repository.ProductRepository;
-import com.admiral.onlineshop.service.OrderService;
+import com.admiral.common.database.model.Order;
+import com.admiral.common.database.repository.OrderRepository;
+import com.admiral.common.database.repository.ProductRepository;
+import com.admiral.common.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

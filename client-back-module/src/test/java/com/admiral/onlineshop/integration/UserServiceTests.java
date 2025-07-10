@@ -1,7 +1,7 @@
 package com.admiral.onlineshop.integration;
 
-import com.admiral.onlineshop.dto.ReadUserDTO;
-import com.admiral.onlineshop.service.UserService;
+import com.admiral.common.dto.ReadUserDTO;
+import com.admiral.common.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;

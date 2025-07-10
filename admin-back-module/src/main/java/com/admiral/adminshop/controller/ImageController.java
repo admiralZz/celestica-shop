@@ -1,6 +1,6 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.service.ImageService;
+import com.admiral.common.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

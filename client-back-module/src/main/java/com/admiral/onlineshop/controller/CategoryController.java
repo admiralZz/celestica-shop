@@ -1,7 +1,7 @@
 package com.admiral.onlineshop.controller;
 
-import com.admiral.onlineshop.dto.CategoryDTO;
-import com.admiral.onlineshop.service.CategoryService;
+import com.admiral.common.dto.CategoryDTO;
+import com.admiral.common.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

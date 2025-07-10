@@ -1,5 +1,23 @@
-allprojects {
+plugins {
+    id 'io.freefair.lombok' apply false
+    id 'io.spring.dependency-management' apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'io.freefair.lombok'
+
+    group = 'com.admiral'
+    version = '1.0.0'
+
     repositories {
         mavenCentral()
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
     }
 }

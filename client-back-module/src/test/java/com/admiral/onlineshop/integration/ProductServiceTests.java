@@ -1,7 +1,7 @@
 package com.admiral.onlineshop.integration;
 
-import com.admiral.onlineshop.dto.ProductDTO;
-import com.admiral.onlineshop.service.ProductService;
+import com.admiral.common.dto.product.ProductDTO;
+import com.admiral.common.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;

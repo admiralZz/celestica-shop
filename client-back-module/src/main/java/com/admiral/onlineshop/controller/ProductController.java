@@ -1,8 +1,7 @@
 package com.admiral.onlineshop.controller;
 
-import com.admiral.onlineshop.dto.ProductDTO;
-import com.admiral.onlineshop.service.ProductService;
-import jakarta.validation.Valid;
+import com.admiral.common.dto.product.ProductDTO;
+import com.admiral.common.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,19 +58,6 @@ public class ProductController {
             @PathVariable Long productId,
             @RequestParam Integer quantity) {
         return ResponseEntity.ok(productService.isInStock(productId, quantity));
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    public ProductDTO createProduct(@Valid @RequestBody ProductDTO productDTO) {
-        return productService.createProduct(productDTO);
-    }
-
-    @PutMapping("/{id}")
-    @Transactional
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(productService.updateProduct(id, productDTO));
     }
 
     @DeleteMapping("/{id}")

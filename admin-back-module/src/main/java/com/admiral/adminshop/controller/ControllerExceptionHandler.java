@@ -1,6 +1,6 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.exception.UserAccessDeniedException;
+import com.admiral.common.exception.UserAccessDeniedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.dto.order.ReadOrdersDTO;
-import com.admiral.adminshop.service.OrderService;
+import com.admiral.common.dto.order.ReadOrdersDTO;
+import com.admiral.common.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

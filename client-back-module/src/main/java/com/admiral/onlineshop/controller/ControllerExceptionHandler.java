@@ -1,8 +1,8 @@
 package com.admiral.onlineshop.controller;
 
-import com.admiral.onlineshop.exception.InsufficientStockException;
-import com.admiral.onlineshop.exception.ProductNotFoundException;
-import com.admiral.onlineshop.exception.UserNotFoundException;
+import com.admiral.common.exception.InsufficientStockException;
+import com.admiral.common.exception.ProductNotFoundException;
+import com.admiral.common.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

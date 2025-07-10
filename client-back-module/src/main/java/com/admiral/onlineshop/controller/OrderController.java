@@ -1,7 +1,7 @@
 package com.admiral.onlineshop.controller;
 
-import com.admiral.onlineshop.dto.*;
-import com.admiral.onlineshop.service.OrderService;
+import com.admiral.common.dto.order.*;
+import com.admiral.common.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/orders")
-@Slf4j
 @RequiredArgsConstructor
 public class OrderController {
 

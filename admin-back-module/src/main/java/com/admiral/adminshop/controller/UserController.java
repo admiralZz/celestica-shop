@@ -1,7 +1,7 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.dto.ReadUserDTO;
-import com.admiral.adminshop.service.UserService;
+import com.admiral.common.dto.ReadUserDTO;
+import com.admiral.common.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;

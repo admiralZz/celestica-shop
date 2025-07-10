@@ -3,8 +3,9 @@ server:
 
 app:
   image:
-    bucket:
-      products: /home/andrey/packages/online-shop/images/products
+    products:
+      bucket: /home/andrey/packages/online-shop/images/products
+      prefix-file-name: "product_"
   debug:
     enable-global-context: true
   cors:

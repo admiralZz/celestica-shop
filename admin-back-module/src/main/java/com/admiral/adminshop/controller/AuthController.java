@@ -1,8 +1,8 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.dto.LoginRequestDto;
-import com.admiral.adminshop.dto.ReadUserDTO;
-import com.admiral.adminshop.service.UserService;
+import com.admiral.common.dto.LoginRequestDTO;
+import com.admiral.common.dto.ReadUserDTO;
+import com.admiral.common.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequestDto, HttpServletRequest request, HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequestDto.getEmail(),

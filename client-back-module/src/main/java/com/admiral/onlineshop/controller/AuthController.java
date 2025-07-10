@@ -1,11 +1,11 @@
 package com.admiral.onlineshop.controller;
 
 import com.admiral.onlineshop.config.security.JwtTokenProvider;
-import com.admiral.onlineshop.dto.CreateUserDTO;
 import com.admiral.onlineshop.dto.JwtResponseDTO;
-import com.admiral.onlineshop.dto.LoginRequestDTO;
-import com.admiral.onlineshop.dto.ReadUserDTO;
-import com.admiral.onlineshop.service.UserService;
+import com.admiral.common.dto.LoginRequestDTO;
+import com.admiral.common.dto.CreateUserDTO;
+import com.admiral.common.dto.ReadUserDTO;
+import com.admiral.common.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

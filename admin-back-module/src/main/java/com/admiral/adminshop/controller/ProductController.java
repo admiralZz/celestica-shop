@@ -1,15 +1,17 @@
 package com.admiral.adminshop.controller;
 
-import com.admiral.adminshop.dto.product.ProductCreateDTO;
-import com.admiral.adminshop.dto.product.ProductDTO;
-import com.admiral.adminshop.dto.product.ProductUpdateDTO;
-import com.admiral.adminshop.service.ProductService;
+import com.admiral.common.dto.product.ProductCreateDTO;
+import com.admiral.common.dto.product.ProductDTO;
+import com.admiral.common.dto.product.ProductUpdateDTO;
+import com.admiral.common.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -60,16 +62,18 @@ public class ProductController {
         return ResponseEntity.ok(productService.isInStock(productId, quantity));
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ProductDTO createProduct(@Validated ProductCreateDTO productDTO) {
-        return productService.createProduct(productDTO);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ProductDTO> createProduct(
+            @RequestPart("product") @Validated ProductCreateDTO productDTO,
+            @RequestPart("image") MultipartFile image) {
+        return ResponseEntity.ok(productService.createProduct(productDTO, image));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id,
-                                                    @Validated ProductUpdateDTO productDTO) {
-        return ResponseEntity.ok(productService.updateProduct(id, productDTO));
+                                                    @RequestPart("product") @Validated ProductUpdateDTO productDTO,
+                                                    @RequestPart("image") MultipartFile image) {
+        return ResponseEntity.ok(productService.updateProduct(id, productDTO, image));
     }
 
     @DeleteMapping("/{id}")

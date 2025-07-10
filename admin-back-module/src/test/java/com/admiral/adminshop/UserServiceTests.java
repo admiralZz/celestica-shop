@@ -1,8 +1,8 @@
 package com.admiral.adminshop;
 
-import com.admiral.adminshop.dto.LoginRequestDto;
-import com.admiral.adminshop.dto.ReadUserDTO;
-import com.admiral.adminshop.service.UserService;
+import com.admiral.common.dto.LoginRequestDTO;
+import com.admiral.common.dto.ReadUserDTO;
+import com.admiral.common.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class UserServiceTests extends IntegrationTest {
 
     @Test
     public void testLoginNotAdmin() throws Exception {
-        LoginRequestDto loginRequestDto = new LoginRequestDto("testuser@example.com", "123456");
+        LoginRequestDTO loginRequestDto = new LoginRequestDTO("testuser@example.com", "123456");
         var request = objectMapper.writeValueAsBytes(loginRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
@@ -51,7 +51,7 @@ public class UserServiceTests extends IntegrationTest {
 
     @Test
     public void testLoginAdmin() throws Exception {
-        LoginRequestDto loginRequestDto = new LoginRequestDto("testadmin@example.com", "123456");
+        LoginRequestDTO loginRequestDto = new LoginRequestDTO("testadmin@example.com", "123456");
         var request = objectMapper.writeValueAsBytes(loginRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
