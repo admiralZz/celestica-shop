@@ -1,10 +1,3 @@
-INSERT INTO users (id, email, password, role)
-VALUES
-    (3, 'testadmin@example.com', '$2a$10$f7cR1vTOwkto2oq1GAGjzO2riy1WUiOlegAUsa8pq5MrA9/Udutie', 'ROLE_ADMIN'),
-    (4, 'testuser@example.com', '$2a$10$f7cR1vTOwkto2oq1GAGjzO2riy1WUiOlegAUsa8pq5MrA9/Udutie', 'ROLE_USER');
--- Нужно чтобы после каждого INSERT увеличивался и seq для id-ков
-SELECT SETVAL('"users_id_seq"', (SELECT MAX(id) FROM users));
-
 INSERT INTO categories (name, description)
 VALUES ('Игрушки для малышей', 'Игрушки для детей от 0 до 3 лет');
 
@@ -16,6 +9,8 @@ VALUES ('Конструкторы', 'Различные виды констру�
 
 INSERT INTO categories (name, description)
 VALUES ('Настольные игры', 'Игры для всей семьи');
+
+SELECT SETVAL('"categories_id_seq"', (SELECT MAX(id) FROM categories));
 
 INSERT INTO products (id, name, description, price, stock_quantity, category_id)
 VALUES (1, 'Мягкий кубик', 'Мягкий развивающий кубик с разными текстурами и звуками', 499.99, 50,
@@ -32,3 +27,5 @@ VALUES (3, 'Конструктор ''Город''', 'Конструктор дл
 INSERT INTO products (id, name, description, price, stock_quantity, category_id)
 VALUES (4, 'Монополия Junior', 'Классическая настольная игра Монополия в детской версии', 999.99, 15,
         (SELECT id FROM categories WHERE name = 'Настольные игры'));
+
+SELECT SETVAL('"products_id_seq"', (SELECT MAX(id) FROM products));

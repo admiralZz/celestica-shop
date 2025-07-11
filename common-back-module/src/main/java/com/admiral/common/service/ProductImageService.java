@@ -54,7 +54,7 @@ public class ProductImageService implements ImageService {
                     .name(path.getFileName().toString())
                     .build());
         } catch (IOException e) {
-            throw new ImageUploadingException(e.getMessage());
+            throw new ImageUploadingException(e.getMessage(), e);
         }
     }
 

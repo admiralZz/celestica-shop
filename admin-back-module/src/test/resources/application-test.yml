@@ -17,4 +17,10 @@ logging:
 #    org.springframework.jdbc.core: TRACE
 app:
   image:
-    bucket: /home/andrey/packages/online-shop/images/products
+    products:
+      bucket: /tmp/images/products
+      prefix-file-name: "product_"
+  init:
+    default-admin:
+      email: testadmin@example.com
+      password: testpassword

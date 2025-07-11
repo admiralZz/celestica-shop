@@ -4,6 +4,7 @@ import com.admiral.common.dto.product.ProductCreateDTO;
 import com.admiral.common.dto.product.ProductDTO;
 import com.admiral.common.dto.product.ProductUpdateDTO;
 import com.admiral.common.exception.CategoryNotFoundException;
+import com.admiral.common.exception.ProductNotFoundException;
 import com.admiral.common.mapper.ProductMapper;
 import com.admiral.common.database.model.Category;
 import com.admiral.common.database.model.Product;
@@ -38,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO getProductById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
         return productMapper.toDTO(product);
     }
 
@@ -93,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         // Проверка существования продукта
         if (!productRepository.existsById(id)) {
-            throw new RuntimeException("Cannot delete. Product not found with id: " + id);
+            throw new ProductNotFoundException("Cannot delete. Product not found with id: " + id);
         }
         productRepository.deleteById(id);
     }
@@ -101,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getProductsByCategory(Long categoryId) {
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));
+                .orElseThrow(() -> new CategoryNotFoundException("Category not found with id: " + categoryId));
         List<Product> products = productRepository.findByCategory(category);
         return productMapper.toDTOList(products);
     }

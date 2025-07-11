@@ -22,7 +22,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException ex) {
-        log.warn("Validation failed: {}", ex.getMessage());
+        log.warn("Validation failed: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body("Validation failed: \n\n" + Optional.of(ex.getBindingResult())
@@ -35,7 +35,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<?> handleProductNotFound(BadCredentialsException ex) {
-        log.warn("Bad credentials: {}", ex.getMessage());
+        log.warn("Bad credentials: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(ex.getMessage());
@@ -43,7 +43,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(UserAccessDeniedException.class)
     public ResponseEntity<?> handleProductNotFound(UserAccessDeniedException ex) {
-        log.warn("User not found: {}", ex.getMessage());
+        log.warn("User not found: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(ex.getMessage());
@@ -51,7 +51,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
     public ResponseEntity<?> handleProductNotFound(InternalAuthenticationServiceException ex) {
-        log.warn("Authentication failed: {}", ex.getMessage());
+        log.warn("Authentication failed: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body(ex.getMessage());
@@ -59,7 +59,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnknownException(Exception ex) {
-        log.error("Unhandled exception: {}", ex.getMessage());
+        log.error("Unhandled exception: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Unhandled exception: " + ex.getMessage());
