@@ -57,3 +57,7 @@ export const logout = async (): Promise<void> => {
         await client.post(`/auth/logout`, {}, { withCredentials: true });
     } catch {}
 }
+
+export const confirmEmail = async (token: string): Promise<void> => {
+    await client.get(`/auth/confirm?token=${encodeURIComponent(token)}`);
+};

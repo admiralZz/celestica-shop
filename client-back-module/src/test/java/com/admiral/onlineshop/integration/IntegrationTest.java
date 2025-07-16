@@ -16,6 +16,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.util.Optional;
 
+// TODO Надо учитывать что все тесты используют один и тот же контейнер.
+
 @SpringBootTest
 @ActiveProfiles("test")
 @Sql({

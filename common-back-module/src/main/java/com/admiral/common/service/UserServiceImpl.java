@@ -62,6 +62,9 @@ public class UserServiceImpl implements UserService {
         // Преобразование DTO в Entity
         User user = userMapper.toEntity(createUserDTO);
 
+        // Всегда активный
+        user.setEnabled(true);
+
         // Хэширование пароля
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

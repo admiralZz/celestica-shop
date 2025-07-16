@@ -6,6 +6,7 @@ import com.admiral.common.dto.LoginRequestDTO;
 import com.admiral.common.dto.CreateUserDTO;
 import com.admiral.common.dto.ReadUserDTO;
 import com.admiral.common.service.UserService;
+import com.admiral.onlineshop.service.RegistrationUsersService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
+    private final RegistrationUsersService registrationUsersService;
 
     @Value("${cookie.name:authToken}")
     private String cookieName;
@@ -89,8 +91,14 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<ReadUserDTO> register(@Valid @RequestBody CreateUserDTO createUserDTO) {
-        ReadUserDTO registeredUser = userService.registerUser(createUserDTO);
+        ReadUserDTO registeredUser = registrationUsersService.register(createUserDTO);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/confirm")
+    public ResponseEntity<ReadUserDTO> confirm(@RequestParam String token) {
+        ReadUserDTO confirmedUser = registrationUsersService.confirm(token);
+        return new ResponseEntity<>(confirmedUser, HttpStatus.OK);
     }
 
     @PostMapping("/logout")

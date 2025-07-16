@@ -4,6 +4,7 @@ ext {
             'mapstruct': '1.5.5.Final',
             'mapstruct_lombok_binding': '0.2.0',
             'testcontainers': '1.19.6',
+            'awaitility': '4.2.0',
             'springdoc': '2.5.0'
     ]
 }

@@ -1,5 +1,6 @@
 package com.admiral.onlineshop.config.security;
 
+import com.admiral.common.exception.UserAccessDeniedException;
 import com.admiral.common.exception.UserNotFoundException;
 import com.admiral.common.database.model.User;
 import com.admiral.common.database.model.UserRole;
@@ -27,6 +28,10 @@ public class GetUserDetailsService implements UserDetailsService {
 
         if (user.getRole().equals(UserRole.ROLE_ADMIN)) {
             throw new UserNotFoundException("User not found with email: " + email);
+        }
+
+        if (!user.isEnabled()) {
+            throw new UserAccessDeniedException("User doesn't have the activation");
         }
 
         return new org.springframework.security.core.userdetails.User(

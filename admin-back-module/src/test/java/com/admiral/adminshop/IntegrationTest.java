@@ -22,7 +22,7 @@ import java.util.Optional;
         "classpath:sql/init_data.sql"
 })
 @Transactional
-@WithMockUser(username = "testadmin@example.com", password = "123456", authorities = {"ROLE_ADMIN"})
+@WithMockUser(username = "testadmin@example.com", password = "testpassword", authorities = {"ROLE_ADMIN"})
 public abstract class IntegrationTest {
     private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:14.4");
 

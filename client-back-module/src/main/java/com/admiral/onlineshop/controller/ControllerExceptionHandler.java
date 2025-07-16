@@ -2,11 +2,13 @@ package com.admiral.onlineshop.controller;
 
 import com.admiral.common.exception.InsufficientStockException;
 import com.admiral.common.exception.ProductNotFoundException;
+import com.admiral.common.exception.UserAccessDeniedException;
 import com.admiral.common.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -43,19 +45,23 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<?> handleProductNotFound(UserNotFoundException ex) {
-        log.warn("User not found exception: {}", ex.getMessage());
-        return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
-                .body("User not found: " + ex.getMessage());
+    public ResponseEntity<?> handleUserNotFound(UserNotFoundException ex) {
+        return unauthorized("User not found exception", ex);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<?> handleProductNotFound(BadCredentialsException ex) {
-        log.warn("Bad credentials exception: {}", ex.getMessage());
-        return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
-                .body("Bad credentials: " + ex.getMessage());
+    public ResponseEntity<?> handleLoginProblem(BadCredentialsException ex) {
+        return unauthorized("Bad credentials exception", ex);
+    }
+
+    @ExceptionHandler(UserAccessDeniedException.class)
+    public ResponseEntity<?> handleLoginProblem(UserAccessDeniedException ex) {
+        return unauthorized("User access denied", ex);
+    }
+
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public ResponseEntity<?> handleLoginProblem(InternalAuthenticationServiceException ex) {
+        return unauthorized("Authentication failed", ex);
     }
 
     @ExceptionHandler(InsufficientStockException.class)
@@ -68,9 +74,16 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleUnknownException(Exception ex) {
-        log.error("Unhandled exception: {}", ex.getMessage());
+        log.error("Unhandled exception: {}", ex.getMessage(), ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Unhandled exception: " + ex.getMessage());
+    }
+
+    private ResponseEntity<?> unauthorized(String title, Exception ex) {
+        log.warn("{}: {}", title, ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(title + ": " + ex.getMessage());
     }
 }

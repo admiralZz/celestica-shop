@@ -25,3 +25,5 @@ VALUES (3, 'Конструктор ''Город''', 'Конструктор дл
 INSERT INTO products (id, name, description, price, stock_quantity, category_id)
 VALUES (4, 'Монополия Junior', 'Классическая настольная игра Монополия в детской версии', 999.99, 15,
         (SELECT id FROM categories WHERE name = 'Настольные игры'));
+
+SELECT SETVAL('"products_id_seq"', (SELECT MAX(id) FROM products));

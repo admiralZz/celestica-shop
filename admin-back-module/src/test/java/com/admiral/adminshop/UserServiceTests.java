@@ -1,5 +1,6 @@
 package com.admiral.adminshop;
 
+import com.admiral.common.dto.CreateUserDTO;
 import com.admiral.common.dto.LoginRequestDTO;
 import com.admiral.common.dto.ReadUserDTO;
 import com.admiral.common.service.UserService;
@@ -34,13 +35,21 @@ public class UserServiceTests extends IntegrationTest {
 
     @Test
     public void testLoginNotAdmin() throws Exception {
+        ReadUserDTO readUserDTO = userService.registerUser(CreateUserDTO.builder()
+                .email("testuser@example.com")
+                .password("123456")
+                .build());
+        if (readUserDTO == null) {
+            throw new RuntimeException("Could not register user");
+        }
+
         LoginRequestDTO loginRequestDto = new LoginRequestDTO("testuser@example.com", "123456");
         var request = objectMapper.writeValueAsBytes(loginRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(request)
-        ).andExpect(MockMvcResultMatchers.status().is(401))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(request)
+                ).andExpect(MockMvcResultMatchers.status().is(401))
                 .andDo(result -> {
                     MockHttpServletResponse response = result.getResponse();
                     Assertions.assertNotNull(response);
@@ -51,7 +60,7 @@ public class UserServiceTests extends IntegrationTest {
 
     @Test
     public void testLoginAdmin() throws Exception {
-        LoginRequestDTO loginRequestDto = new LoginRequestDTO("testadmin@example.com", "123456");
+        LoginRequestDTO loginRequestDto = new LoginRequestDTO("testadmin@example.com", "testpassword");
         var request = objectMapper.writeValueAsBytes(loginRequestDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")

@@ -31,4 +31,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orders;
+
+    @Column(nullable = false)
+    private boolean enabled = false;
 }

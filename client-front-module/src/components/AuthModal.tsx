@@ -43,7 +43,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (!passwordsMatch) return;
     await register({ email: registerEmail, password: registerPassword });
-    setSuccessMessage('Регистрация успешна! Теперь войдите.');
+    setSuccessMessage('На вашу электронную почту было отправлено письмо со ссылкой для подтверждения регистрации. Если вы не обнаружили письма, проверьте папку "Спам".');
     setActiveTab('login');
   };
 

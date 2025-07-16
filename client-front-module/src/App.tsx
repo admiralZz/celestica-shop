@@ -11,6 +11,7 @@ import AuthModal from './components/AuthModal';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import ProfilePage from './pages/ProfilePage';
+import ActivationPage from './pages/ActivationPage';
 
 const App: React.FC = () => {
   const [isAuthOpen, setIsAuthOpen] = React.useState(false);
@@ -27,6 +28,7 @@ const App: React.FC = () => {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+                <Route path="/activation" element={<ActivationPage />} />
               </Routes>
             </main>
             <Footer />

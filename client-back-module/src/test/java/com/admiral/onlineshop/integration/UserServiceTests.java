@@ -1,5 +1,6 @@
 package com.admiral.onlineshop.integration;
 
+import com.admiral.common.dto.CreateUserDTO;
 import com.admiral.common.dto.ReadUserDTO;
 import com.admiral.common.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,12 @@ public class UserServiceTests extends IntegrationTest {
 
     @Test
     public void testGetUser() {
-        ReadUserDTO userById = userService.getUserById(1L);
+        ReadUserDTO readUserDTO = userService.registerUser(CreateUserDTO.builder()
+                .email("testuser@example.com")
+                .password("123456")
+                .build());
+
+        ReadUserDTO userById = userService.getUserById(readUserDTO.getId());
 
         Assertions.assertNotNull(userById);
     }

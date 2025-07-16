@@ -2,6 +2,15 @@ server:
   port: 8083
 
 app:
+  user:
+    registration:
+      mail:
+        from: sales@celestica-shop.com
+        subject: Confirming registration
+        body: Hi there! Link for your activation
+      activation-url: http://localhost:3001/activation
+      activation-token:
+        expiration: 86400000
   image:
     products:
       bucket: /home/andrey/packages/online-shop/images/products
@@ -28,6 +37,18 @@ spring:
     show-sql: true
   liquibase:
     enabled: false
+  mail:
+    host: ${MAIL_SERVICE_HOST:mail.gmail.com}
+    port: 465
+    username: ${MAIL_SERVICE_USERNAME:user@mail.com}
+    password: ${MAIL_SERVICE_PASSWORD:123}
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
 
 logging:
   level:
