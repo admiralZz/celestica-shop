@@ -32,6 +32,7 @@ const OrdersPage: React.FC = () => {
                 <th className="px-4 py-2 text-left font-semibold">Email</th>
                 <th className="px-4 py-2 text-left font-semibold">Телефон</th>
                 <th className="px-4 py-2 text-left font-semibold">Адрес</th>
+                <th className="px-4 py-2 text-left font-semibold">Дата/время</th>
                 <th className="px-4 py-2 text-left font-semibold">Сумма</th>
               </tr>
             </thead>
@@ -42,6 +43,7 @@ const OrdersPage: React.FC = () => {
                   <td className="px-4 py-2">{order.email}</td>
                   <td className="px-4 py-2">{order.phone}</td>
                   <td className="px-4 py-2">{order.address}</td>
+                  <td className="px-4 py-2">{order.datetime.toLocaleString()}</td>
                   <td className="px-4 py-2">{order.total}</td>
                 </tr>
               ))}

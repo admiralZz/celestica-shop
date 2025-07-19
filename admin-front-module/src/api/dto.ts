@@ -6,6 +6,8 @@ export interface Product {
     price: number;
     stockQuantity: number;
     categoryName: string;
+    createdAt: Date;
+    updatedAt: Date;
     imageId: number;
     imageUrl?: string;
 }
@@ -55,6 +57,7 @@ export interface OrderBody {
     email: string;
     phone: string;
     address: string;
+    datetime: Date;
     total: number;
 }
 
@@ -80,4 +83,5 @@ export interface AuthResponse {
 export interface User {
     id: number;
     email: string;
+    createdAt: Date;
 }

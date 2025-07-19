@@ -8,6 +8,8 @@ export const mapToProduct = (data: any): DTO.Product => ({
     price: Number(data.price),
     stockQuantity: Number(data.stockQuantity),
     categoryName: String(data.categoryName),
+    createdAt: new Date(data.createdAt),
+    updatedAt: new Date(data.updatedAt),
     imageId: Number(data.imageId),
     imageUrl: data.imageId ? `${client.defaults.baseURL}/images/${data.imageId}` : undefined
 });
@@ -32,6 +34,7 @@ export const mapToOrderBody = (data: any): DTO.OrderBody => ({
     email: String(data.email),
     phone: String(data.phone),
     address: String(data.address),
+    datetime: new Date(data.createdAt),
     total: Number(data.total)
 });
 
@@ -47,5 +50,6 @@ export const mapToAuthResponse = (data: any): DTO.AuthResponse => ({
 
 export const mapToUser = (data: any): DTO.User => ({
     id: Number(data.id),
-    email: String(data.email)
+    email: String(data.email),
+    createdAt: new Date(data.createdAt)
 });

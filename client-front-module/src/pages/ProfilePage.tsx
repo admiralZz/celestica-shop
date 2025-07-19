@@ -37,10 +37,11 @@ const OrderPanel: React.FC = () => {
     <div className="flex flex-col gap-6">
       {orders.map((order, idx) => (
         <div key={idx} className="border rounded-lg p-4 bg-gray-50">
-          <div className="mb-2 flex flex-wrap gap-4 text-sm text-gray-700">
+          <div className="mb-2 flex flex-col gap-1 text-sm text-gray-700">
             <span>Email: <span className="font-medium">{order.email}</span></span>
             <span>Телефон: <span className="font-medium">{order.phone}</span></span>
             <span>Адрес: <span className="font-medium">{order.address}</span></span>
+            <span>Дата/время: <span className="font-medium">{order.datetime.toLocaleString()}</span></span>
             <span>Сумма: <span className="font-bold text-blue-600">{order.total.toLocaleString()} ₽</span></span>
           </div>
           <div className="overflow-x-auto">

@@ -45,6 +45,7 @@ const SettingsPage: React.FC = () => {
               <tr className="bg-gray-100">
                 <th className="px-4 py-2 text-left font-semibold">ID</th>
                 <th className="px-4 py-2 text-left font-semibold">Email</th>
+                <th className="px-4 py-2 text-left font-semibold">Дата создания</th>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +53,7 @@ const SettingsPage: React.FC = () => {
                 <tr key={user.id} className="border-t hover:bg-blue-50">
                   <td className="px-4 py-2">{user.id}</td>
                   <td className="px-4 py-2">{user.email}</td>
+                  <td className="px-4 py-2">{user.createdAt?.toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>

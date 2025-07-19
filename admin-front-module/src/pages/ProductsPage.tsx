@@ -109,14 +109,15 @@ const ProductsPage: React.FC = () => {
         >
           Добавить продукт
         </button>
-        <table className="min-w-full bg-white border rounded shadow">
+        <table className="min-w-full bg-white border border-gray-200 rounded shadow border-collapse">
           <thead>
             <tr>
-              <th className="px-4 py-2 border-b">ID</th>
-              <th className="px-4 py-2 border-b">Название</th>
-              <th className="px-4 py-2 border-b">Категория</th>
-              <th className="px-4 py-2 border-b">Цена</th>
-              <th className="px-4 py-2 border-b">В наличии</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">ID</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">Название</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">Категория</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">Цена</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">В наличии</th>
+              <th className="px-4 py-2 border border-gray-200 text-left font-semibold">Обновлено</th>
             </tr>
           </thead>
           <tbody>
@@ -129,11 +130,12 @@ const ProductsPage: React.FC = () => {
                 onClick={() => handleRowClick(product.id)}
                 onKeyDown={e => handleRowKeyDown(e, product.id)}
               >
-                <td className="px-4 py-2 border-b">{product.id}</td>
-                <td className="px-4 py-2 border-b">{product.name}</td>
-                <td className="px-4 py-2 border-b">{product.categoryName}</td>
-                <td className="px-4 py-2 border-b">{product.price}</td>
-                <td className="px-4 py-2 border-b">{product.stockQuantity}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.id}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.name}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.categoryName}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.price}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.stockQuantity}</td>
+                <td className="px-4 py-2 border border-gray-200">{product.updatedAt.toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

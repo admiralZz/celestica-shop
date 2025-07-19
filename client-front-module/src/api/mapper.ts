@@ -32,6 +32,7 @@ export const mapToOrderBody = (data: any): DTO.OrderBody => ({
     email: String(data.email),
     phone: String(data.phone),
     address: String(data.address),
+    datetime: new Date(data.createdAt),
     total: Number(data.total)
 });
 

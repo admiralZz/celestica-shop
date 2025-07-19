@@ -191,20 +191,31 @@ const ProductPage: React.FC = () => {
         )}
       </div>
       <div className="mb-2 text-gray-700">
+        Описание:{' '}
         {editMode ? (
           <textarea
             name="description"
             value={display.description}
             onChange={handleChange}
-            className="border rounded px-2 py-1 w-full min-h-[80px]"
+            className="border rounded px-2 py-1 w-full min-h-[80px] mt-1"
             aria-label="Описание"
           />
         ) : (
-          display.description
+            display.description
         )}
       </div>
       {!editMode && (
-        <div className="flex gap-4 mt-4">
+        <div className="mb-2 text-gray-700">
+          Дата создания: {display.createdAt?.toLocaleString()}
+        </div>
+      )}
+      {!editMode && (
+        <div className="mb-2 text-gray-700">
+          Последнее обновление: {display.updatedAt?.toLocaleString()}
+        </div>
+      )}
+      {!editMode && (
+          <div className="flex gap-4 mt-4">
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             onClick={handleEdit}

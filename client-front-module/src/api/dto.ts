@@ -44,6 +44,7 @@ export interface OrderBody {
     email: string;
     phone: string;
     address: string;
+    datetime: Date;
     total: number;
 }
 

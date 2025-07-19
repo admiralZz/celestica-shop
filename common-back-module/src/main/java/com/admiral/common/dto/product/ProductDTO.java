@@ -9,6 +9,7 @@ import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Value
 @Builder
@@ -22,7 +23,10 @@ public class ProductDTO {
     String name;
     
     String description;
-    
+
+    Instant createdAt;
+    Instant updatedAt;
+
     @NotNull(message = "Price is required")
     @Min(value = 0, message = "Price must be positive")
     BigDecimal price;
