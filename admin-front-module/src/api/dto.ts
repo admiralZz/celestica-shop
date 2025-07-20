@@ -29,7 +29,6 @@ export interface ChosenOrderItem {
     quantity: number;
 }
 
-
 export interface GetOrdersResponse {
     orders: OrderBody[];
 }
@@ -78,6 +77,17 @@ export interface RegisterRequest {
 export interface AuthResponse {
     id: number;
     email: string;
+}
+
+// Настройка почтового клиента
+export interface MailSettings {
+    host: string;
+    port: string;
+    username: string;
+    password: string;
+    protocol: string;
+    auth: boolean;
+    sslEnable: boolean;
 }
 
 export interface User {

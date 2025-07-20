@@ -37,18 +37,6 @@ spring:
     show-sql: true
   liquibase:
     enabled: false
-  mail:
-    host: ${MAIL_SERVICE_HOST:mail.gmail.com}
-    port: 465
-    username: ${MAIL_SERVICE_USERNAME:user@mail.com}
-    password: ${MAIL_SERVICE_PASSWORD:123}
-    protocol: smtps
-    properties:
-      mail:
-        smtp:
-          auth: true
-          ssl:
-            enable: true
 
 logging:
   level:

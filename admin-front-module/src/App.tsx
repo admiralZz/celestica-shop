@@ -6,7 +6,7 @@ import ProductsPage from './pages/ProductsPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ProductPage from './pages/ProductPage';
 import AddProductPage from './pages/AddProductPage';
-import SettingsPage from './pages/SettingsPage';
+import SettingsPage from './pages/settings/SettingsPage';
 import OrdersPage from './pages/OrdersPage';
 
 const App: React.FC = () => {

@@ -1,6 +1,6 @@
 package com.admiral.onlineshop.integration.conf;
 
-import com.admiral.common.service.MailService;
+import com.admiral.common.service.mail.MailService;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

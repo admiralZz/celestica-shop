@@ -1,4 +1,4 @@
-package com.admiral.common.service;
+package com.admiral.common.service.mail;
 
 public interface MailService {
 

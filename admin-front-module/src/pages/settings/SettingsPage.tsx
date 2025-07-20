@@ -1,30 +1,18 @@
-import React, { useState, useEffect, KeyboardEvent } from 'react';
-import { getUsers } from '../api/client';
-import { User } from '../api/dto';
+import React, { useState, KeyboardEvent } from 'react';
+import MailSettingsTab from './tab/MailSettingsTab';
+import UsersSettingsTab from './tab/UsersSettingsTab';
 
 const tabs = [
   { key: 'users', label: 'Пользователи' },
   { key: 'system', label: 'Система' },
+  { key: 'mail', label: 'Почтовый клиент' },
   { key: 'extra', label: 'Дополнительно' },
 ];
 
-type TabKey = 'users' | 'system' | 'extra';
+type TabKey = 'users' | 'system' | 'extra' | 'mail';
 
 const SettingsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('users');
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (activeTab !== 'users') return;
-    setLoading(true);
-    setError(null);
-    getUsers()
-      .then(setUsers)
-      .catch(() => setError('Ошибка загрузки пользователей'))
-      .finally(() => setLoading(false));
-  }, [activeTab]);
 
   const handleTabClick = (key: TabKey) => setActiveTab(key);
 
@@ -36,36 +24,16 @@ const SettingsPage: React.FC = () => {
 
   const renderTabContent = () => {
     if (activeTab === 'users') {
-      if (loading) return <div className="text-gray-500">Загрузка пользователей...</div>;
-      if (error) return <div className="text-red-500">{error}</div>;
-      return (
-        <div>
-          <table className="min-w-full border text-sm rounded overflow-hidden">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-4 py-2 text-left font-semibold">ID</th>
-                <th className="px-4 py-2 text-left font-semibold">Email</th>
-                <th className="px-4 py-2 text-left font-semibold">Дата создания</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(user => (
-                <tr key={user.id} className="border-t hover:bg-blue-50">
-                  <td className="px-4 py-2">{user.id}</td>
-                  <td className="px-4 py-2">{user.email}</td>
-                  <td className="px-4 py-2">{user.createdAt?.toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
+      return <UsersSettingsTab />;
     }
     if (activeTab === 'system') {
       return <div className="text-lg">Системные настройки</div>;
     }
     if (activeTab === 'extra') {
       return <div className="text-lg">Дополнительные параметры</div>;
+    }
+    if (activeTab === 'mail') {
+      return <MailSettingsTab />;
     }
     return null;
   };

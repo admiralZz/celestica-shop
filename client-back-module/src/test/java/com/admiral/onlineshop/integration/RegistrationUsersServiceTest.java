@@ -6,7 +6,7 @@ import com.admiral.common.database.repository.UserActivationTokenRepository;
 import com.admiral.common.database.repository.UserRepository;
 import com.admiral.common.dto.CreateUserDTO;
 import com.admiral.common.dto.ReadUserDTO;
-import com.admiral.common.service.MailService;
+import com.admiral.common.service.mail.MailService;
 import com.admiral.onlineshop.exception.UserActivationTokenException;
 import com.admiral.onlineshop.integration.conf.MockMailServiceConfiguration;
 import com.admiral.onlineshop.service.RegistrationUsersService;

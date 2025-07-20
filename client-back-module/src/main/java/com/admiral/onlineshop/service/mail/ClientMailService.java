@@ -1,6 +1,6 @@
 package com.admiral.onlineshop.service.mail;
 
-import com.admiral.common.service.MailService;
+import com.admiral.common.service.mail.MailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

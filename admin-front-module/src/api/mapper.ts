@@ -1,5 +1,6 @@
 import * as DTO from "./dto";
 import {client} from "./config";
+import {MailSettings} from "./dto";
 
 export const mapToProduct = (data: any): DTO.Product => ({
     id: Number(data.id),
@@ -52,4 +53,14 @@ export const mapToUser = (data: any): DTO.User => ({
     id: Number(data.id),
     email: String(data.email),
     createdAt: new Date(data.createdAt)
+});
+
+export const mapToMailSettings = (data: any): DTO.MailSettings => ({
+    host: String(data.host),
+    port: String(data.port),
+    username: String(data.username),
+    password: String(data.password),
+    protocol: String(data.protocol),
+    auth: Boolean(data.auth),
+    sslEnable: Boolean(data.sslEnable)
 });

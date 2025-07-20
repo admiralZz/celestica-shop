@@ -1,7 +1,7 @@
 package com.admiral.onlineshop.event;
 
 import com.admiral.common.database.model.UserActivationToken;
-import com.admiral.common.service.MailService;
+import com.admiral.common.service.mail.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
