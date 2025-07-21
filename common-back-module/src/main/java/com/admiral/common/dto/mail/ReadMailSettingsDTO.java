@@ -11,7 +11,7 @@ public class ReadMailSettingsDTO {
     String host;
     Integer port;
     String username;
-    String password;
+    boolean hasPassword;
     String protocol;
     boolean auth;
     boolean sslEnable;

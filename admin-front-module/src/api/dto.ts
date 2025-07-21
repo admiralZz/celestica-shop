@@ -84,6 +84,17 @@ export interface MailSettings {
     host: string;
     port: string;
     username: string;
+    hasPassword: boolean;
+    protocol: string;
+    auth: boolean;
+    sslEnable: boolean;
+}
+
+// Настройка почтового клиента
+export interface UpdateMailSettings {
+    host: string;
+    port: string;
+    username: string;
     password: string;
     protocol: string;
     auth: boolean;

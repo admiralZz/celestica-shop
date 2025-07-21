@@ -6,9 +6,12 @@ import {
     mapToOrderBody,
     mapToLoginResponse,
     mapToAuthResponse,
-    mapToOrderResponse, mapToUser, mapToMailSettings
+    mapToOrderResponse,
+    mapToUser,
+    mapToMailSettings
 } from './mapper';
 import {client} from "./config";
+import {UpdateMailSettings} from "./dto";
 
 // Получить все продукты
 export const getItems = async (): Promise<DTO.Product[]> => {
@@ -124,11 +127,11 @@ export const deleteProduct = async (id: number): Promise<void> => {
 };
 
 // Обновить настройки почтового клиента
-export const updateMailSettings = async (mailSettings: DTO.MailSettings): Promise<DTO.MailSettings> => {
-    const response = await client.put<DTO.MailSettings>(
+export const updateMailSettings = async (mailSettings: DTO.UpdateMailSettings): Promise<DTO.MailSettings> => {
+    const response = await client.put<DTO.UpdateMailSettings>(
         '/settings/mail',
         mailSettings,
         { withCredentials: true }
     );
-    return response.data;
+    return mapToMailSettings(response.data);
 };

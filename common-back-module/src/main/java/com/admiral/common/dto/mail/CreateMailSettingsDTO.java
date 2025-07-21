@@ -16,7 +16,6 @@ public class CreateMailSettingsDTO {
     Integer port;
     @NotBlank
     String username;
-    @NotBlank
     String password;
     @NotBlank
     String protocol;

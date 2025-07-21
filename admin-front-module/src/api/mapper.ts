@@ -59,7 +59,7 @@ export const mapToMailSettings = (data: any): DTO.MailSettings => ({
     host: String(data.host),
     port: String(data.port),
     username: String(data.username),
-    password: String(data.password),
+    hasPassword: Boolean(data.hasPassword),
     protocol: String(data.protocol),
     auth: Boolean(data.auth),
     sslEnable: Boolean(data.sslEnable)
