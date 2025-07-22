@@ -61,10 +61,12 @@ public class ProductImageService implements ImageService {
     @SneakyThrows
     @Override
     public Optional<byte[]> getImageById(Long id) {
+        log.debug("Retrieving image by id: {}", id);
         Optional<Image> optionalImage = imageRepository.findById(id);
         if (optionalImage.isPresent()) {
             Image image = optionalImage.get();
             Path path = Path.of(properties.bucket(), image.getName());
+            log.debug("Found image by path: {}", path);
 
             if (Files.exists(path)) {
                 return Optional.of(Files.readAllBytes(path));

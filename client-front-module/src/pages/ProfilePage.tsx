@@ -36,46 +36,46 @@ const OrderPanel: React.FC = () => {
   return (
     <div className="flex flex-col gap-6">
       {orders.map((order, idx) => (
-        <div key={idx} className="border rounded-lg p-4 bg-gray-50">
-          <div className="mb-2 flex flex-col gap-1 text-sm text-gray-700">
-            <span>Email: <span className="font-medium">{order.email}</span></span>
-            <span>Телефон: <span className="font-medium">{order.phone}</span></span>
-            <span>Адрес: <span className="font-medium">{order.address}</span></span>
-            <span>Дата/время: <span className="font-medium">{order.datetime.toLocaleString()}</span></span>
-            <span>Сумма: <span className="font-bold text-blue-600">{order.total.toLocaleString()} ₽</span></span>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead>
+          <div key={idx} className="border rounded-lg p-4 bg-gray-50 relative">
+            <div className="absolute top-4 right-4 text-xs md:text-sm text-gray-400">{order.datetime.toLocaleString()}</div>
+            <div className="mb-2 flex flex-col gap-1 text-sm text-gray-700 pt-8">
+              <span>Email: <span className="font-medium">{order.email}</span></span>
+              <span>Телефон: <span className="font-medium">{order.phone}</span></span>
+              <span>Адрес: <span className="font-medium">{order.address}</span></span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm md:text-base">
+                <thead>
                 <tr className="border-b">
-                  <th className="py-2 px-2 font-semibold">Товар</th>
-                  <th className="py-2 px-2 font-semibold text-center">Цена</th>
-                  <th className="py-2 px-2 font-semibold text-center">Кол-во</th>
-                  <th className="py-2 px-2 font-semibold text-right">Итого</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold">Товар</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">Цена</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">Кол-во</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-right">Итого</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 {order.items.map((item, i) => (
-                  <tr key={i} className="border-b last:border-b-0">
-                    <td className="py-2 px-2">
-                      <Link
-                        to={`/product/${item.product.id}`}
-                        className="hover:text-blue-500 underline"
-                        tabIndex={0}
-                        aria-label={`Открыть страницу товара ${item.product.name}`}
-                      >
-                        {item.product.name}
-                      </Link>
-                    </td>
-                    <td className="py-2 px-2 text-center">{item.product.price.toLocaleString()} ₽</td>
-                    <td className="py-2 px-2 text-center">{item.quantity}</td>
-                    <td className="py-2 px-2 text-right font-semibold">{item.price.toLocaleString()} ₽</td>
-                  </tr>
+                    <tr key={i} className="border-b last:border-b-0">
+                      <td className="py-1 px-1 md:py-2 md:px-2">
+                        <Link
+                            to={`/product/${item.product.id}`}
+                            className="hover:text-blue-500 underline"
+                            tabIndex={0}
+                            aria-label={`Открыть страницу товара ${item.product.name}`}
+                        >
+                          {item.product.name}
+                        </Link>
+                      </td>
+                      <td className="py-1 px-1 md:py-2 md:px-2 text-center">{item.product.price.toLocaleString()} ₽</td>
+                      <td className="py-1 px-1 md:py-2 md:px-2 text-center">{item.quantity}</td>
+                      <td className="py-1 px-1 md:py-2 md:px-2 text-right font-semibold">{item.price.toLocaleString()} ₽</td>
+                    </tr>
                 ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-8 text-l font-bold">Сумма: <span className="text-blue-600">{order.total.toLocaleString()} ₽</span></div>
           </div>
-        </div>
       ))}
     </div>
   );
@@ -85,8 +85,8 @@ const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'orders' | 'settings'>('orders');
 
   return (
-    <div className="container mx-auto p-8 flex gap-8">
-      <aside className="w-56">
+    <div className="container mx-auto p-8 flex flex-col md:flex-row gap-8">
+      <aside className="w-full md:w-56 mb-4 md:mb-0">
         <nav className="flex flex-col gap-2">
           {TABS.map(tab => (
             <button
@@ -101,7 +101,7 @@ const ProfilePage: React.FC = () => {
           ))}
         </nav>
       </aside>
-      <section className="flex-1 bg-white rounded shadow p-6 min-h-[300px]">
+      <section className="flex-1 w-full bg-white rounded shadow p-6 min-h-[300px]">
         {activeTab === 'orders' && <OrderPanel />}
         {activeTab === 'settings' && <div>Здесь будут настройки профиля</div>}
       </section>

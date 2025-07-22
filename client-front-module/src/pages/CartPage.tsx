@@ -26,6 +26,7 @@ const CartPage: React.FC = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b">
+                <th className="py-4 px-2"></th> {/* Картинка */}
                 <th className="text-left py-4 px-2">Товар</th>
                 <th className="text-center py-4 px-2">Цена</th>
                 <th className="text-center py-4 px-2">Количество</th>
@@ -36,17 +37,17 @@ const CartPage: React.FC = () => {
             <tbody>
               {items.map(item => (
                 <tr key={item.product.id} className="border-b">
+                  <td className="py-4 px-2 min-w-[64px]">
+                    <img 
+                      src={item.product.imageUrl ?? '/static/placeholder.jpg'} 
+                      alt={item.product.name}
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                  </td>
                   <td className="py-4 px-2">
-                    <div className="flex items-center">
-                      <img 
-                        src={item.product.imageUrl ?? '/static/placeholder.jpg'} 
-                        alt={item.product.name}
-                        className="w-16 h-16 object-cover rounded mr-4"
-                      />
-                      <Link to={`/product/${item.product.id}`} className="hover:text-blue-500">
-                        {item.product.name}
-                      </Link>
-                    </div>
+                    <Link to={`/product/${item.product.id}`} className="hover:text-blue-500">
+                      {item.product.name}
+                    </Link>
                   </td>
                   <td className="text-center py-4 px-2">
                     {item.product.price.toLocaleString()} ₽

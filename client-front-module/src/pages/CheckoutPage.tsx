@@ -89,6 +89,7 @@ const CheckoutPage: React.FC = () => {
             <table className="w-full text-left">
               <thead>
                 <tr>
+                  <th className="py-2 px-2"></th> {/* Картинка */}
                   <th className="py-2 px-2 font-semibold text-gray-700">Позиция</th>
                   <th className="py-2 px-2 font-semibold text-gray-700 text-center">Цена</th>
                   <th className="py-2 px-2 font-semibold text-gray-700 text-center">Количество</th>
@@ -98,6 +99,13 @@ const CheckoutPage: React.FC = () => {
               <tbody>
                 {orderDetails.items.map(item => (
                   <tr key={item.product.id} className="border-b last:border-b-0">
+                    <td className="py-2 px-2 min-w-[48px]">
+                      <img
+                        src={item.product.imageUrl ?? '/static/placeholder.jpg'}
+                        alt={item.product.name}
+                        className="w-12 h-12 object-cover rounded"
+                      />
+                    </td>
                     <td className="py-2 px-2">{item.product.name}</td>
                     <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} ₽/шт</td>
                     <td className="py-2 px-2 text-center">{item.quantity}</td>
@@ -140,6 +148,7 @@ const CheckoutPage: React.FC = () => {
           <table className="w-full text-left">
             <thead>
               <tr>
+                <th className="py-2 px-2"></th> {/* Картинка */}
                 <th className="py-2 px-2 font-semibold text-gray-700">Позиция</th>
                 <th className="py-2 px-2 font-semibold text-gray-700 text-center">Цена</th>
                 <th className="py-2 px-2 font-semibold text-gray-700 text-center">Количество</th>
@@ -149,6 +158,13 @@ const CheckoutPage: React.FC = () => {
             <tbody>
               {validatedItems.map(item => (
                 <tr key={item.product.id} className="border-b last:border-b-0">
+                  <td className="py-2 px-2 min-w-[48px]">
+                    <img
+                      src={item.product.imageUrl ?? '/static/placeholder.jpg'}
+                      alt={item.product.name}
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                  </td>
                   <td className="py-2 px-2">{item.product.name}</td>
                   <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} ₽/шт</td>
                   <td className="py-2 px-2 text-center">{item.quantity}</td>
