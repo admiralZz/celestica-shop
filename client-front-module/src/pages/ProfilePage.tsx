@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMyOrders } from '../api/client';
 import type { OrderBody } from '../api/dto';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const TABS = [
   { key: 'orders', label: 'Мои заказы' },
@@ -12,6 +13,7 @@ const OrderPanel: React.FC = () => {
   const [orders, setOrders] = useState<OrderBody[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -29,9 +31,9 @@ const OrderPanel: React.FC = () => {
     fetchOrders();
   }, []);
 
-  if (loading) return <div className="text-blue-500">Загрузка заказов...</div>;
+  if (loading) return <div className="text-blue-500">{t('profile.loading')}</div>;
   if (error) return <div className="text-red-500">{error}</div>;
-  if (!orders.length) return <div className="text-gray-500">У вас пока нет заказов.</div>;
+  if (!orders.length) return <div className="text-gray-500">{t('profile.noOrders')}</div>;
 
   return (
     <div className="flex flex-col gap-6">
@@ -39,18 +41,18 @@ const OrderPanel: React.FC = () => {
           <div key={idx} className="border rounded-lg p-4 bg-gray-50 relative">
             <div className="absolute top-4 right-4 text-xs md:text-sm text-gray-400">{order.datetime.toLocaleString()}</div>
             <div className="mb-2 flex flex-col gap-1 text-sm text-gray-700 pt-8">
-              <span>Email: <span className="font-medium">{order.email}</span></span>
-              <span>Телефон: <span className="font-medium">{order.phone}</span></span>
-              <span>Адрес: <span className="font-medium">{order.address}</span></span>
+              <span>{t('checkout.email')}: <span className="font-medium">{order.email}</span></span>
+              <span>{t('checkout.phone')}: <span className="font-medium">{order.phone}</span></span>
+              <span>{t('checkout.address')}: <span className="font-medium">{order.address}</span></span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm md:text-base">
                 <thead>
                 <tr className="border-b">
-                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold">Товар</th>
-                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">Цена</th>
-                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">Кол-во</th>
-                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-right">Итого</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold">{t('cart.product')}</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">{t('cart.price')}</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-center">{t('cart.quantity')}</th>
+                  <th className="py-1 px-1 md:py-2 md:px-2 font-semibold text-right">{t('cart.sum')}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,7 +76,7 @@ const OrderPanel: React.FC = () => {
                 </tbody>
               </table>
             </div>
-            <div className="mt-8 text-l font-bold">Сумма: <span className="text-blue-600">{order.total.toLocaleString()} ₽</span></div>
+            <div className="mt-8 text-l font-bold">{t('profile.sum')}: <span className="text-blue-600">{order.total.toLocaleString()} ₽</span></div>
           </div>
       ))}
     </div>
@@ -83,6 +85,7 @@ const OrderPanel: React.FC = () => {
 
 const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'orders' | 'settings'>('orders');
+  const { t } = useTranslation();
 
   return (
     <div className="container mx-auto p-8 flex flex-col md:flex-row gap-8">
@@ -96,7 +99,7 @@ const ProfilePage: React.FC = () => {
               tabIndex={0}
               aria-current={activeTab === tab.key}
             >
-              {tab.label}
+              {tab.key === 'orders' ? t('profile.myOrders') : t('profile.settings')}
             </button>
           ))}
         </nav>

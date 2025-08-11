@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { checkOrder, createOrder } from '../api/client';
 import { ChosenOrderItem, OrderItem, CreateOrder, OrderBody } from '../api/dto';
+import { useTranslation } from 'react-i18next';
 
 const CheckoutPage: React.FC = () => {
   const { items, clearCart } = useCart();
@@ -15,6 +16,7 @@ const CheckoutPage: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchValidated = async () => {
@@ -65,7 +67,7 @@ const CheckoutPage: React.FC = () => {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <p className="text-lg text-blue-500">Проверяем заказ...</p>
+        <p className="text-lg text-blue-500">{t('checkout.verifying')}</p>
       </div>
     );
   }
@@ -74,7 +76,7 @@ const CheckoutPage: React.FC = () => {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <p className="text-lg text-red-500">{error}</p>
-        <Link to="/cart" className="text-blue-500 hover:underline">Вернуться в корзину</Link>
+        <Link to="/cart" className="text-blue-500 hover:underline">{t('checkout.errorBack')}</Link>
       </div>
     );
   }
@@ -82,18 +84,18 @@ const CheckoutPage: React.FC = () => {
   if (orderDetails) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">Заказ успешно оформлен!</h1>
+        <h1 className="text-2xl font-bold mb-6 text-gray-800">{t('checkout.success')}</h1>
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Детали заказа</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('checkout.orderDetails')}</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr>
-                  <th className="py-2 px-2"></th> {/* Картинка */}
-                  <th className="py-2 px-2 font-semibold text-gray-700">Позиция</th>
-                  <th className="py-2 px-2 font-semibold text-gray-700 text-center">Цена</th>
-                  <th className="py-2 px-2 font-semibold text-gray-700 text-center">Количество</th>
-                  <th className="py-2 px-2 font-semibold text-gray-700 text-right">Итого</th>
+                  <th className="py-2 px-2"></th> {/* image */}
+                  <th className="py-2 px-2 font-semibold text-gray-700">{t('checkout.position')}</th>
+                  <th className="py-2 px-2 font-semibold text-gray-700 text-center">{t('checkout.price')}</th>
+                  <th className="py-2 px-2 font-semibold text-gray-700 text-center">{t('checkout.quantity')}</th>
+                  <th className="py-2 px-2 font-semibold text-gray-700 text-right">{t('checkout.total')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -116,15 +118,15 @@ const CheckoutPage: React.FC = () => {
             </table>
           </div>
           <div className="text-right font-bold text-lg mt-4">
-            Итоговая сумма: {orderDetails.total.toLocaleString()} ₽
+            {t('checkout.finalTotal')}: {orderDetails.total.toLocaleString()} ₽
           </div>
           <div className="mt-6">
-            <div className="mb-2">Email: <span className="font-medium">{orderDetails.email}</span></div>
-            <div className="mb-2">Телефон: <span className="font-medium">{orderDetails.phone}</span></div>
-            <div className="mb-2">Адрес: <span className="font-medium">{orderDetails.address}</span></div>
+            <div className="mb-2">{t('checkout.email')}: <span className="font-medium">{orderDetails.email}</span></div>
+            <div className="mb-2">{t('checkout.phone')}: <span className="font-medium">{orderDetails.phone}</span></div>
+            <div className="mb-2">{t('checkout.address')}: <span className="font-medium">{orderDetails.address}</span></div>
           </div>
         </div>
-        <Link to="/" className="text-blue-500 hover:underline">Вернуться в каталог</Link>
+        <Link to="/" className="text-blue-500 hover:underline">{t('checkout.backCatalog')}</Link>
       </div>
     );
   }
@@ -132,27 +134,27 @@ const CheckoutPage: React.FC = () => {
   if (validatedItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">Оформление заказа</h1>
-        <p className="text-lg text-gray-600 mb-4">Ваша корзина пуста</p>
-        <Link to="/cart" className="text-blue-500 hover:underline">Вернуться в корзину</Link>
+        <h1 className="text-2xl font-bold mb-6 text-gray-800">{t('checkout.title')}</h1>
+        <p className="text-lg text-gray-600 mb-4">{t('cart.empty')}</p>
+        <Link to="/cart" className="text-blue-500 hover:underline">{t('checkout.errorBack')}</Link>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Оформление заказа</h1>
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">{t('checkout.title')}</h1>
       <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">Ваш заказ</h2>
+        <h2 className="text-xl font-semibold mb-4">{t('checkout.yourOrder')}</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
               <tr>
-                <th className="py-2 px-2"></th> {/* Картинка */}
-                <th className="py-2 px-2 font-semibold text-gray-700">Позиция</th>
-                <th className="py-2 px-2 font-semibold text-gray-700 text-center">Цена</th>
-                <th className="py-2 px-2 font-semibold text-gray-700 text-center">Количество</th>
-                <th className="py-2 px-2 font-semibold text-gray-700 text-right">Итого</th>
+                <th className="py-2 px-2"></th> {/* image */}
+                <th className="py-2 px-2 font-semibold text-gray-700">{t('checkout.position')}</th>
+                <th className="py-2 px-2 font-semibold text-gray-700 text-center">{t('checkout.price')}</th>
+                <th className="py-2 px-2 font-semibold text-gray-700 text-center">{t('checkout.quantity')}</th>
+                <th className="py-2 px-2 font-semibold text-gray-700 text-right">{t('checkout.total')}</th>
               </tr>
             </thead>
             <tbody>
@@ -175,12 +177,12 @@ const CheckoutPage: React.FC = () => {
           </table>
         </div>
         <div className="text-right font-bold text-lg mt-4">
-          Итоговая сумма: {validatedTotal.toLocaleString()} ₽
+          {t('checkout.finalTotal')}: {validatedTotal.toLocaleString()} ₽
         </div>
       </div>
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6">
         <div className="mb-4">
-          <label className="block mb-2 text-gray-700 font-medium" htmlFor="name">Email</label>
+          <label className="block mb-2 text-gray-700 font-medium" htmlFor="name">{t('checkout.email')}</label>
           <input
             id="name"
             type="email"
@@ -192,7 +194,7 @@ const CheckoutPage: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-gray-700 font-medium" htmlFor="phone">Телефон</label>
+          <label className="block mb-2 text-gray-700 font-medium" htmlFor="phone">{t('checkout.phone')}</label>
           <input
             id="phone"
             type="tel"
@@ -204,7 +206,7 @@ const CheckoutPage: React.FC = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block mb-2 text-gray-700 font-medium" htmlFor="address">Адрес доставки</label>
+          <label className="block mb-2 text-gray-700 font-medium" htmlFor="address">{t('checkout.address')}</label>
           <input
             id="address"
             type="text"
@@ -220,7 +222,7 @@ const CheckoutPage: React.FC = () => {
           className="w-full py-3 px-6 rounded-lg text-white font-medium bg-blue-500 hover:bg-blue-600 transition-colors"
           disabled={submitting || validatedItems.length === 0}
         >
-          {submitting ? 'Оформляем...' : 'Оформить заказ'}
+          {submitting ? t('checkout.submitting') : t('checkout.submit')}
         </button>
       </form>
     </div>

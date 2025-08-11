@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useTranslation } from 'react-i18next';
 
 const CartPage: React.FC = () => {
   const { items, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
+  const { t } = useTranslation();
 
   if (items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">Корзина</h1>
-        <p className="text-lg text-gray-600 mb-4">Ваша корзина пуста</p>
+        <h1 className="text-2xl font-bold mb-6 text-gray-800">{t('cart.title')}</h1>
+        <p className="text-lg text-gray-600 mb-4">{t('cart.empty')}</p>
         <Link to="/" className="text-blue-500 hover:underline">
-          Перейти в каталог
+          {t('cart.goCatalog')}
         </Link>
       </div>
     );
@@ -19,19 +21,19 @@ const CartPage: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Корзина</h1>
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">{t('cart.title')}</h1>
       
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b">
-                <th className="py-4 px-2"></th> {/* Картинка */}
-                <th className="text-left py-4 px-2">Товар</th>
-                <th className="text-center py-4 px-2">Цена</th>
-                <th className="text-center py-4 px-2">Количество</th>
-                <th className="text-center py-4 px-2">Сумма</th>
-                <th className="text-right py-4 px-2">Действия</th>
+                <th className="py-4 px-2"></th> {/* image */}
+                <th className="text-left py-4 px-2">{t('cart.product')}</th>
+                <th className="text-center py-4 px-2">{t('cart.price')}</th>
+                <th className="text-center py-4 px-2">{t('cart.quantity')}</th>
+                <th className="text-center py-4 px-2">{t('cart.sum')}</th>
+                <th className="text-right py-4 px-2">{t('cart.actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -57,7 +59,7 @@ const CartPage: React.FC = () => {
                       <button 
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                         className="bg-gray-200 px-2 py-1 rounded-l"
-                        aria-label="Уменьшить количество"
+                        aria-label={t('cart.decrease')}
                       >
                         -
                       </button>
@@ -67,7 +69,7 @@ const CartPage: React.FC = () => {
                       <button 
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                         className="bg-gray-200 px-2 py-1 rounded-r"
-                        aria-label="Увеличить количество"
+                        aria-label={t('cart.increase')}
                       >
                         +
                       </button>
@@ -82,7 +84,7 @@ const CartPage: React.FC = () => {
                       className="text-red-500 hover:text-red-700"
                       aria-label="Удалить товар"
                     >
-                      Удалить
+                      {t('cart.remove')}
                     </button>
                   </td>
                 </tr>
@@ -96,15 +98,15 @@ const CartPage: React.FC = () => {
             onClick={clearCart}
             className="text-red-500 hover:text-red-700 mb-4 md:mb-0"
           >
-            Очистить корзину
+            {t('cart.clear')}
           </button>
           
           <div className="text-right">
             <p className="text-lg mb-2">
-              Итого: <span className="font-bold">{getTotalPrice().toLocaleString()} ₽</span>
+              {t('cart.total')}: <span className="font-bold">{getTotalPrice().toLocaleString()} ₽</span>
             </p>
             <Link to="/checkout" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded inline-block text-center">
-              Оформить заказ
+              {t('cart.checkout')}
             </Link>
           </div>
         </div>

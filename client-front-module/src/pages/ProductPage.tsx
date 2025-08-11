@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getItemById } from '../api/client';
 import { Product } from '../api/dto';
 import { useCart } from '../context/CartContext';
+import { useTranslation } from 'react-i18next';
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,6 +11,7 @@ const ProductPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { addToCart } = useCart();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,14 +24,14 @@ const ProductPage: React.FC = () => {
         setError(null);
       } catch (err) {
         console.error('Error fetching product:', err);
-        setError('Не удалось загрузить информацию о товаре');
+        setError(t('product.loadError'));
       } finally {
         setLoading(false);
       }
     };
 
     fetchProduct();
-  }, [id]);
+  }, [id, t]);
 
   const handleAddToCart = () => {
     if (product) {
@@ -40,7 +42,7 @@ const ProductPage: React.FC = () => {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <p className="text-lg">Загрузка...</p>
+        <p className="text-lg">{t('product.loading')}</p>
       </div>
     );
   }
@@ -48,9 +50,9 @@ const ProductPage: React.FC = () => {
   if (error || !product) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <p className="text-lg text-red-500">{error || 'Товар не найден'}</p>
+        <p className="text-lg text-red-500">{error || t('product.notFound')}</p>
         <Link to="/" className="text-blue-500 hover:underline mt-4 inline-block">
-          Вернуться в каталог
+          {t('product.backToCatalog')}
         </Link>
       </div>
     );
@@ -59,7 +61,7 @@ const ProductPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <Link to="/" className="text-blue-500 hover:underline mb-6 inline-block">
-        ← Назад в каталог
+        {t('product.backToCatalog')}
       </Link>
       
       <div className="bg-white rounded-lg shadow-lg p-6 mt-4">
@@ -81,14 +83,14 @@ const ProductPage: React.FC = () => {
             <div className="mb-6">
               <span className="text-3xl font-bold text-blue-600">{product.price.toLocaleString()} ₽</span>
               {product.stockQuantity > 0 ? (
-                <span className="ml-3 text-green-500">В наличии</span>
+                <span className="ml-3 text-green-500">{t('product.inStock')}</span>
               ) : (
-                <span className="ml-3 text-red-500">Нет в наличии</span>
+                <span className="ml-3 text-red-500">{t('product.outOfStock')}</span>
               )}
             </div>
             
             <div className="mb-6">
-              <p className="text-gray-700 mb-2">Категория: <span className="font-medium">{product.categoryName}</span></p>
+              <p className="text-gray-700 mb-2">{t('product.category')}: <span className="font-medium">{product.categoryName}</span></p>
             </div>
             
             <button 
@@ -100,7 +102,7 @@ const ProductPage: React.FC = () => {
                   : 'bg-gray-400 cursor-not-allowed'
               } transition-colors`}
             >
-              В корзину
+              {t('product.addToCart')}
             </button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 const TABS = [
   { key: 'login', label: 'Вход' },
@@ -22,6 +23,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const passwordsMatch = registerPassword === registerConfirm;
   const { login, register, loading, error, isAuthenticated } = useAuth();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (isAuthenticated && isOpen) onClose();
@@ -43,7 +45,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     if (!passwordsMatch) return;
     await register({ email: registerEmail, password: registerPassword });
-    setSuccessMessage('На вашу электронную почту было отправлено письмо со ссылкой для подтверждения регистрации. Если вы не обнаружили письма, проверьте папку "Спам".');
+    setSuccessMessage(t('auth.success'));
     setActiveTab('login');
   };
 
@@ -54,14 +56,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
       aria-modal="true"
       role="dialog"
       tabIndex={0}
-      aria-label="Модальное окно авторизации"
+      aria-label="Auth modal"
       onKeyDown={e => e.key === 'Escape' && onClose()}
     >
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
         <button
           className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 focus:outline-none"
           onClick={onClose}
-          aria-label="Закрыть модальное окно"
+          aria-label="Close"
         >
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -77,7 +79,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               role="tab"
               tabIndex={0}
             >
-              {tab.label}
+              {tab.key === 'login' ? t('auth.login') : t('auth.register')}
             </button>
           ))}
         </div>
@@ -86,11 +88,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             {successMessage && (
               <div className="text-green-600 text-center mb-2 text-sm">{successMessage}</div>
             )}
-            <form className="flex flex-col gap-4" aria-label="Форма входа" onSubmit={handleLogin}>
+            <form className="flex flex-col gap-4" aria-label="Login form" onSubmit={handleLogin}>
               <input
                 type="email"
                 className="border rounded px-3 py-2"
-                placeholder="Email"
+                placeholder={t('auth.email')}
                 required
                 autoFocus
                 value={loginEmail}
@@ -99,7 +101,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <input
                 type="password"
                 className="border rounded px-3 py-2"
-                placeholder="Пароль"
+                placeholder={t('auth.password')}
                 required
                 value={loginPassword}
                 onChange={e => setLoginPassword(e.target.value)}
@@ -110,16 +112,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 className="bg-blue-600 text-white rounded py-2 font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? 'Вход...' : 'Войти'}
+                {loading ? t('auth.signingIn') : t('auth.signIn')}
               </button>
             </form>
           </>
         ) : (
-          <form className="flex flex-col gap-4" aria-label="Форма регистрации" onSubmit={handleRegister}>
+          <form className="flex flex-col gap-4" aria-label="Register form" onSubmit={handleRegister}>
             <input
               type="text"
               className="border rounded px-3 py-2"
-              placeholder="Имя"
+              placeholder={t('auth.name')}
               required
               autoFocus
               value={registerName}
@@ -128,7 +130,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <input
               type="email"
               className="border rounded px-3 py-2"
-              placeholder="Email"
+              placeholder={t('auth.email')}
               required
               value={registerEmail}
               onChange={e => setRegisterEmail(e.target.value)}
@@ -136,7 +138,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <input
               type="password"
               className="border rounded px-3 py-2"
-              placeholder="Пароль"
+              placeholder={t('auth.password')}
               required
               value={registerPassword}
               onChange={e => setRegisterPassword(e.target.value)}
@@ -144,13 +146,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <input
               type="password"
               className={`border rounded px-3 py-2 ${registerConfirm && !passwordsMatch ? 'border-red-500' : ''}`}
-              placeholder="Подтвердите пароль"
+              placeholder={t('auth.confirmPassword')}
               required
               value={registerConfirm}
               onChange={e => setRegisterConfirm(e.target.value)}
             />
             {!passwordsMatch && registerConfirm && (
-              <span className="text-red-500 text-sm">Пароли не совпадают</span>
+              <span className="text-red-500 text-sm">{t('auth.passwordsMismatch')}</span>
             )}
             {error && <span className="text-red-500 text-sm">{error}</span>}
             <button
@@ -158,7 +160,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               className="bg-blue-600 text-white rounded py-2 font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
               disabled={!passwordsMatch || loading}
             >
-              {loading ? 'Регистрация...' : 'Зарегистрироваться'}
+              {loading ? t('auth.registering') : t('auth.signUp')}
             </button>
           </form>
         )}
