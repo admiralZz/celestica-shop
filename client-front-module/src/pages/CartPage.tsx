@@ -52,7 +52,7 @@ const CartPage: React.FC = () => {
                     </Link>
                   </td>
                   <td className="text-center py-4 px-2">
-                    {item.product.price.toLocaleString()} ₽
+                    {item.product.price.toLocaleString()} $
                   </td>
                   <td className="text-center py-4 px-2">
                     <div className="flex items-center justify-center">
@@ -76,7 +76,7 @@ const CartPage: React.FC = () => {
                     </div>
                   </td>
                   <td className="text-center py-4 px-2">
-                    {(item.product.price * item.quantity).toLocaleString()} ₽
+                    {(item.product.price * item.quantity).toLocaleString()} $
                   </td>
                   <td className="text-right py-4 px-2">
                     <button 
@@ -103,7 +103,7 @@ const CartPage: React.FC = () => {
           
           <div className="text-right">
             <p className="text-lg mb-2">
-              {t('cart.total')}: <span className="font-bold">{getTotalPrice().toLocaleString()} ₽</span>
+              {t('cart.total')}: <span className="font-bold">{getTotalPrice().toLocaleString()} $</span>
             </p>
             <Link to="/checkout" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded inline-block text-center">
               {t('cart.checkout')}

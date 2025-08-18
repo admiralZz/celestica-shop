@@ -19,10 +19,10 @@ const resources = {
         links: 'Links',
         home: 'Home',
         catalog: 'Catalog',
-        about: 'About',
+        about: 'About us',
         contacts: 'Contacts',
         contactTitle: 'Contacts',
-        address: 'Address: Example st., 123',
+        address: 'Address: 5830 E 2nd St, Ste 7000 Casper WY 82609',
         phone: 'Phone: +7 (123) 456-78-90',
         email: 'Email: sales@celestica.com',
         rights: 'All rights reserved.'
@@ -138,7 +138,7 @@ const resources = {
         about: 'О нас',
         contacts: 'Контакты',
         contactTitle: 'Контакты',
-        address: 'Адрес: ул. Примерная, 123',
+        address: 'Адрес: 5830 E 2nd St, Ste 7000 Casper WY 82609',
         phone: 'Телефон: +7 (123) 456-78-90',
         email: 'Email: sales@celestica.com',
         rights: 'Все права защищены.'
@@ -254,7 +254,7 @@ const resources = {
         about: '关于我们',
         contacts: '联系方式',
         contactTitle: '联系方式',
-        address: '地址：示例街 123 号',
+        address: '地址：5830 E 2nd St, Ste 7000 Casper WY 82609',
         phone: '电话：+7 (123) 456-78-90',
         email: '邮箱：sales@celestica.com',
         rights: '保留所有权利。'

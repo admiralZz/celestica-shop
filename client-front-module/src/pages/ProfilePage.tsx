@@ -68,15 +68,15 @@ const OrderPanel: React.FC = () => {
                           {item.product.name}
                         </Link>
                       </td>
-                      <td className="py-1 px-1 md:py-2 md:px-2 text-center">{item.product.price.toLocaleString()} ₽</td>
+                      <td className="py-1 px-1 md:py-2 md:px-2 text-center">{item.product.price.toLocaleString()} $</td>
                       <td className="py-1 px-1 md:py-2 md:px-2 text-center">{item.quantity}</td>
-                      <td className="py-1 px-1 md:py-2 md:px-2 text-right font-semibold">{item.price.toLocaleString()} ₽</td>
+                      <td className="py-1 px-1 md:py-2 md:px-2 text-right font-semibold">{item.price.toLocaleString()} $</td>
                     </tr>
                 ))}
                 </tbody>
               </table>
             </div>
-            <div className="mt-8 text-l font-bold">{t('profile.sum')}: <span className="text-blue-600">{order.total.toLocaleString()} ₽</span></div>
+            <div className="mt-8 text-l font-bold">{t('profile.sum')}: <span className="text-blue-600">{order.total.toLocaleString()} $</span></div>
           </div>
       ))}
     </div>

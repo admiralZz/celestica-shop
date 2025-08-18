@@ -109,16 +109,16 @@ const CheckoutPage: React.FC = () => {
                       />
                     </td>
                     <td className="py-2 px-2">{item.product.name}</td>
-                    <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} ₽/шт</td>
+                    <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} $/шт</td>
                     <td className="py-2 px-2 text-center">{item.quantity}</td>
-                    <td className="py-2 px-2 text-right font-semibold">{item.price.toLocaleString()} ₽</td>
+                    <td className="py-2 px-2 text-right font-semibold">{item.price.toLocaleString()} $</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <div className="text-right font-bold text-lg mt-4">
-            {t('checkout.finalTotal')}: {orderDetails.total.toLocaleString()} ₽
+            {t('checkout.finalTotal')}: {orderDetails.total.toLocaleString()} $
           </div>
           <div className="mt-6">
             <div className="mb-2">{t('checkout.email')}: <span className="font-medium">{orderDetails.email}</span></div>
@@ -168,16 +168,16 @@ const CheckoutPage: React.FC = () => {
                     />
                   </td>
                   <td className="py-2 px-2">{item.product.name}</td>
-                  <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} ₽/шт</td>
+                  <td className="py-2 px-2 text-center text-gray-500">{item.product.price.toLocaleString()} $/шт</td>
                   <td className="py-2 px-2 text-center">{item.quantity}</td>
-                  <td className="py-2 px-2 text-right font-semibold">{item.price.toLocaleString()} ₽</td>
+                  <td className="py-2 px-2 text-right font-semibold">{item.price.toLocaleString()} $</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <div className="text-right font-bold text-lg mt-4">
-          {t('checkout.finalTotal')}: {validatedTotal.toLocaleString()} ₽
+          {t('checkout.finalTotal')}: {validatedTotal.toLocaleString()} $
         </div>
       </div>
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6">

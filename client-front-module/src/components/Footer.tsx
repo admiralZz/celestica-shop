@@ -19,7 +19,6 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">{t('footer.links')}</h3>
             <ul className="space-y-2">
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.home')}</a></li>
-              <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.catalog')}</a></li>
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.about')}</a></li>
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.contacts')}</a></li>
             </ul>
@@ -29,7 +28,6 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">{t('footer.contactTitle')}</h3>
             <address className="not-italic text-gray-300">
               <p>{t('footer.address')}</p>
-              <p>{t('footer.phone')}</p>
               <p>{t('footer.email')}</p>
             </address>
           </div>

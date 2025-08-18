@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, name, price, imageUrl }) 
         <div className="p-4">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">{name}</h3>
           <div className="flex justify-between items-center">
-            <span className="text-blue-600 font-bold">{price.toLocaleString()} ₽</span>
+            <span className="text-blue-600 font-bold">{price.toLocaleString()} $</span>
           </div>
         </div>
       </Link>

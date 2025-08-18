@@ -81,7 +81,7 @@ const ProductPage: React.FC = () => {
             <p className="text-gray-600 mb-6">{product.description}</p>
             
             <div className="mb-6">
-              <span className="text-3xl font-bold text-blue-600">{product.price.toLocaleString()} ₽</span>
+              <span className="text-3xl font-bold text-blue-600">{product.price.toLocaleString()} $</span>
               {product.stockQuantity > 0 ? (
                 <span className="ml-3 text-green-500">{t('product.inStock')}</span>
               ) : (
