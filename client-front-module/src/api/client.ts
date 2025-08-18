@@ -40,6 +40,12 @@ export const createOrder = async (order: DTO.CreateOrder): Promise<DTO.OrderBody
     return mapToOrderBody(response.data);
 };
 
+// Отправка форму сотрудничества
+export const createPartnershipRequest = async (data: DTO.CreatePartnershipRequest): Promise<any> => {
+    const response = await client.post(`/partnership`, data,  { withCredentials: true });
+    return response.data;
+};
+
 export const login = async (login: DTO.LoginRequest): Promise<DTO.LoginResponse> => {
     const response = await client.post<DTO.LoginRequest>(`/auth/login`, login, { withCredentials: true });
     return mapToLoginResponse(response.data);

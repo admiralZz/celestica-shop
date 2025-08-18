@@ -66,3 +66,15 @@ export interface AuthResponse {
     id: number;
     email: string;
 }
+
+export interface CreatePartnershipRequest {
+  firstName: string;
+  lastName: string;
+  company: string;
+  email: string;
+  phone?: string;
+  location?: string;
+  cooperationType: string;
+  productCategory?: string;
+  message?: string;
+}

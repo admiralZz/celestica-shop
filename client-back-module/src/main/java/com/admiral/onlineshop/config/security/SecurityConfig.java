@@ -53,12 +53,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/images/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/orders/check").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/orders/create").permitAll()
-                        // Защищенные эндпоинты
-//                        .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
-//                        .requestMatchers("/api/users/**").authenticated()
-//                        .requestMatchers("/api/orders/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/partnership").permitAll()
                         // Все остальные запросы требуют аутентификации
                         .anyRequest().authenticated()
                 )

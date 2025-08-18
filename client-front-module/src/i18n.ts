@@ -20,12 +20,45 @@ const resources = {
         home: 'Home',
         catalog: 'Catalog',
         about: 'About us',
-        contacts: 'Contacts',
+        contacts: 'Contacts us',
+        partner: 'Partner with us',
         contactTitle: 'Contacts',
         address: 'Address: 5830 E 2nd St, Ste 7000 Casper WY 82609',
         phone: 'Phone: +7 (123) 456-78-90',
         email: 'Email: sales@celestica.com',
         rights: 'All rights reserved.'
+      },
+      partnerForm: {
+        title: 'Partner with us',
+        name: 'First and Last Name',
+        company: 'Company / Brand',
+        email: 'Email',
+        phone: 'Phone',
+        location: 'Country / City',
+        cooperationType: 'Type of Cooperation',
+        cooperationOptions: {
+          supplier: 'Supplier',
+          distributor: 'Distributor',
+          manufacturer: 'Manufacturer',
+          wholesaler: 'Wholesale Buyer',
+          other: 'Other'
+        },
+        category: 'Product Category',
+        message: 'Message / Offer Description',
+        submit: 'Send Request',
+        success: 'Thank you for your request! We will contact you within 2 business days.',
+        firstName: 'First name',
+        lastName: 'Last name',
+        firstNamePlaceholder: 'Enter your first name',
+        lastNamePlaceholder: 'Enter your last name',
+        errors: {
+          firstName: 'Please enter a valid first name',
+          lastName: 'Please enter a valid last name',
+          company: 'Please enter your company/brand',
+          cooperationType: 'Please choose your type of cooperation',
+          emailRequired: 'Please enter your email',
+          emailFormat: 'Please enter a valid email address'
+        }
       },
       catalog: {
         title: 'Products catalog',
@@ -137,11 +170,44 @@ const resources = {
         catalog: 'Каталог',
         about: 'О нас',
         contacts: 'Контакты',
+        partner: 'Стать партнёром',
         contactTitle: 'Контакты',
         address: 'Адрес: 5830 E 2nd St, Ste 7000 Casper WY 82609',
         phone: 'Телефон: +7 (123) 456-78-90',
         email: 'Email: sales@celestica.com',
         rights: 'Все права защищены.'
+      },
+      partnerForm: {
+        title: 'Стать партнёром',
+        name: 'Имя и фамилия',
+        company: 'Компания / бренд',
+        email: 'Email',
+        phone: 'Телефон',
+        location: 'Страна / город',
+        cooperationType: 'Вид сотрудничества',
+        cooperationOptions: {
+          supplier: 'Поставщик товаров',
+          distributor: 'Дистрибьютор',
+          manufacturer: 'Производитель',
+          wholesaler: 'Оптовый покупатель',
+          other: 'Другое'
+        },
+        category: 'Категория товаров',
+        message: 'Сообщение / описание предложения',
+        submit: 'Отправить запрос',
+        success: 'Спасибо за ваш запрос! Мы свяжемся с вами в течение 2 рабочих дней.',
+        firstName: 'Имя',
+        lastName: 'Фамилия',
+        firstNamePlaceholder: 'Введите имя',
+        lastNamePlaceholder: 'Введите фамилию',
+        errors: {
+          firstName: 'Введите корректное имя',
+          lastName: 'Введите корректную фамилию',
+          company: 'Укажите компанию/бренд',
+          cooperationType: 'Укажите вид сотрудничества',
+          emailRequired: 'Укажите email',
+          emailFormat: 'Введите корректный email'
+        }
       },
       catalog: {
         title: 'Каталог товаров',
@@ -258,6 +324,38 @@ const resources = {
         phone: '电话：+7 (123) 456-78-90',
         email: '邮箱：sales@celestica.com',
         rights: '保留所有权利。'
+      },
+      partnerForm: {
+        title: '成为合作伙伴',
+        name: '姓名和姓氏',
+        company: '公司/品牌',
+        email: '邮箱',
+        phone: '电话',
+        location: '国家/城市',
+        cooperationType: '合作类型',
+        cooperationOptions: {
+          supplier: '供应商',
+          distributor: '分销商',
+          manufacturer: '制造商',
+          wholesaler: '批发买家',
+          other: '其他'
+        },
+        category: '产品类别',
+        message: '消息/报价描述',
+        submit: '发送请求',
+        success: '感谢您的请求！我们将在2个工作日内与您联系。',
+        firstName: '名',
+        lastName: '姓',
+        firstNamePlaceholder: '输入您的名字',
+        lastNamePlaceholder: '输入您的姓氏',
+        errors: {
+          firstName: '请输入有效的名字',
+          lastName: '请输入有效的姓氏',
+          company: '请输入公司/品牌',
+          cooperationType: '指定合作类型',
+          emailRequired: '请输入邮箱',
+          emailFormat: '请输入有效的邮箱地址'
+        }
       },
       catalog: {
         title: '商品目录',

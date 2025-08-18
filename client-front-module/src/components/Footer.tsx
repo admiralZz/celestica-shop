@@ -21,6 +21,7 @@ const Footer: React.FC = () => {
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.home')}</a></li>
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.about')}</a></li>
               <li><a href="#" className="hover:text-blue-300 transition-colors">{t('footer.contacts')}</a></li>
+              <li><a href="/partner" className="hover:text-blue-300 transition-colors">{t('footer.partner')}</a></li>
             </ul>
           </div>
           
