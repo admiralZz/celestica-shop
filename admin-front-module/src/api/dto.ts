@@ -106,3 +106,15 @@ export interface User {
     email: string;
     createdAt: Date;
 }
+
+export interface PartnershipRequest {
+    firstName: string;
+    lastName: string;
+    company: string;
+    email: string;
+    phone?: string;
+    location?: string;
+    cooperationType: string;
+    productCategory?: string;
+    message?: string;
+}

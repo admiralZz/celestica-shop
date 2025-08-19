@@ -8,7 +8,7 @@ import {
     mapToAuthResponse,
     mapToOrderResponse,
     mapToUser,
-    mapToMailSettings
+    mapToMailSettings, mapToPartnershipRequest
 } from './mapper';
 import {client} from "./config";
 import {UpdateMailSettings} from "./dto";
@@ -53,6 +53,12 @@ export const checkOrder = async (products: DTO.ChosenOrderItem[]): Promise<DTO.C
 export const createOrder = async (order: DTO.CreateOrder): Promise<DTO.OrderBody> => {
     const response = await client.post<DTO.OrderBody>(`/orders/create`, order, {withCredentials: true});
     return mapToOrderBody(response.data);
+};
+
+// Получить запросы сотрудничества
+export const getPartnerRequests = async (): Promise<DTO.PartnershipRequest[]> => {
+    const response = await client.get<DTO.PartnershipRequest[]>('/partnership', { withCredentials: true });
+    return response.data.map(mapToPartnershipRequest)
 };
 
 export const login = async (login: DTO.LoginRequest): Promise<DTO.LoginResponse> => {

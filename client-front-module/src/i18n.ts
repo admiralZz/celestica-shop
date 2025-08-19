@@ -43,7 +43,7 @@ const resources = {
           wholesaler: 'Wholesale Buyer',
           other: 'Other'
         },
-        category: 'Product Category',
+        productCategory: 'Product Category',
         message: 'Message / Offer Description',
         submit: 'Send Request',
         success: 'Thank you for your request! We will contact you within 2 business days.',
@@ -192,7 +192,7 @@ const resources = {
           wholesaler: 'Оптовый покупатель',
           other: 'Другое'
         },
-        category: 'Категория товаров',
+        productCategory: 'Категория товаров',
         message: 'Сообщение / описание предложения',
         submit: 'Отправить запрос',
         success: 'Спасибо за ваш запрос! Мы свяжемся с вами в течение 2 рабочих дней.',
@@ -340,7 +340,7 @@ const resources = {
           wholesaler: '批发买家',
           other: '其他'
         },
-        category: '产品类别',
+        productCategory: '产品类别',
         message: '消息/报价描述',
         submit: '发送请求',
         success: '感谢您的请求！我们将在2个工作日内与您联系。',

@@ -24,10 +24,4 @@ public class PartnershipController {
         ReadPartnershipDTO result = partnershipService.createPartnershipRequest(createPartnershipDTO);
         return ResponseEntity.ok(result);
     }
-
-    @GetMapping
-    public ResponseEntity<List<ReadPartnershipDTO>> getPartnershipRequest() {
-        return ResponseEntity.ok(partnershipService.getPartnershipRequests());
-    }
-
 }

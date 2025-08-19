@@ -111,7 +111,7 @@ const PartnerPage: React.FC = () => {
           <input name="location" value={form.location} onChange={handleChange} className="w-full border rounded px-3 py-2" />
         </div>
         <div>
-          <label className="block font-semibold mb-1">{t('partnerForm.cooperationType')}</label>
+          <label className="block font-semibold mb-1">{t('partnerForm.cooperationType')}  *</label>
           <select name="cooperationType" value={form.cooperationType} onChange={handleChange} className={`w-full border rounded px-3 py-2${errors.cooperationType ? ' border-red-500' : ''}`}>
             <option value="">--</option>
             {cooperationOptions.map(opt => (

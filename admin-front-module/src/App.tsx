@@ -8,6 +8,7 @@ import ProductPage from './pages/ProductPage';
 import AddProductPage from './pages/AddProductPage';
 import SettingsPage from './pages/settings/SettingsPage';
 import OrdersPage from './pages/OrdersPage';
+import PartnershipRequestsPage from './pages/PartnershipRequestsPage';
 
 const App: React.FC = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/partnership" element={<PartnershipRequestsPage />} />
           <Route path="/products/add" element={<AddProductPage />} />
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/settings" element={<SettingsPage />} />

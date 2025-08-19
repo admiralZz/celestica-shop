@@ -1,6 +1,6 @@
 import * as DTO from "./dto";
 import {client} from "./config";
-import {MailSettings} from "./dto";
+import {MailSettings, PartnershipRequests} from "./dto";
 
 export const mapToProduct = (data: any): DTO.Product => ({
     id: Number(data.id),
@@ -37,6 +37,18 @@ export const mapToOrderBody = (data: any): DTO.OrderBody => ({
     address: String(data.address),
     datetime: new Date(data.createdAt),
     total: Number(data.total)
+});
+
+export const mapToPartnershipRequest = (data: any): DTO.PartnershipRequest => ({
+    firstName: String(data.firstName),
+    lastName: String(data.lastName),
+    company: String(data.company),
+    email: String(data.email),
+    phone: String(data.phone),
+    location: String(data.location),
+    cooperationType: String(data.cooperationType),
+    productCategory: String(data.productCategory),
+    message: String(data.message)
 });
 
 export const mapToLoginResponse = (data: any): DTO.LoginResponse => ({
