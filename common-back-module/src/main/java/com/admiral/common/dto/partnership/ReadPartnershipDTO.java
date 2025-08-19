@@ -1,6 +1,7 @@
 package com.admiral.common.dto.partnership;
 
 import lombok.Builder;
+import lombok.ToString;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
@@ -8,6 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 // для десериализации DTO с Value и Builder в json. Например чтобы можно было юзать эти сущности в контроллерах
 @Jacksonized
+@ToString
 public class ReadPartnershipDTO {
     String firstName;
     String lastName;

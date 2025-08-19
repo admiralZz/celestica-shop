@@ -11,6 +11,12 @@ app:
       activation-url: http://localhost:3001/activation
       activation-token:
         expiration: 86400000
+  partnership:
+    mail:
+      from: sales@celestica-shop.com
+      to: procelestica@gmail.com
+      subject: Partnership request
+      body: Someone wants to be a partner
   image:
     products:
       bucket: /home/andrey/packages/online-shop/images/products
