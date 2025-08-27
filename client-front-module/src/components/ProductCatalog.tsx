@@ -10,17 +10,21 @@ const ProductCatalog: React.FC = () => {
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOption, setSortOption] = useState('default');
+    const [isLoading, setIsLoading] = useState(true);
     const { t } = useTranslation();
 
     // Загрузка данных с сервера один раз при монтировании
     useEffect(() => {
         const fetchProducts = async () => {
+            setIsLoading(true);
             try {
                 const productsList = await getItems();
                 setProducts(productsList);
                 setFilteredProducts(productsList);
             } catch (error: any) {
                 console.error('Ошибка загрузки продуктов:', error.message);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -69,7 +73,11 @@ const ProductCatalog: React.FC = () => {
                 onSortChange={setSortOption}
             />
 
-            {filteredProducts.length === 0 ? (
+            {isLoading ? (
+                <div className="flex justify-center items-center py-16">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                </div>
+            ) : filteredProducts.length === 0 ? (
                 <div className="text-center py-8">
                     <p className="text-gray-500 text-lg">{t('catalog.notFound')}</p>
                 </div>
